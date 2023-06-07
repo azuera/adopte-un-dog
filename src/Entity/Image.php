@@ -16,6 +16,10 @@ class Image
     #[ORM\Column(length: 255)]
     private ?string $path = null;
 
+    #[ORM\ManyToOne(inversedBy: 'images')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Dog $dog = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +33,18 @@ class Image
     public function setPath(string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getDog(): ?Dog
+    {
+        return $this->dog;
+    }
+
+    public function setDog(?Dog $dog): self
+    {
+        $this->dog = $dog;
 
         return $this;
     }

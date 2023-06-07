@@ -23,6 +23,10 @@ class Message
     #[ORM\Column]
     private ?bool $isSentByAdopter = null;
 
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Application $application = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Message
     public function setIsSentByAdopter(bool $isSentByAdopter): self
     {
         $this->isSentByAdopter = $isSentByAdopter;
+
+        return $this;
+    }
+
+    public function getApplication(): ?Application
+    {
+        return $this->application;
+    }
+
+    public function setApplication(?Application $application): self
+    {
+        $this->application = $application;
 
         return $this;
     }

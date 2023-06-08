@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --white : #FFFFFF ; 
+    --greengray : #6b935c;
+    --bluegray: #CBCBCB ;
+    --navbarcolor : #D9D9D9 ; 
+}
+
+/* 
+settings 
+*/
+header {
+background-image: linear-gradient(to top right, 
+    rgba(0, 0, 0,0.7), 
+    rgba(0, 0, 0, 0.1)), 
+    url("/media/corgi.jpg");
+background-repeat: no-repeat; 
+background-position: 50% 60%;
+background-size: cover;
+padding: 5px;
+height: 25rem;
+}
+
+header h1 {
+    margin-top: 12rem;
+    font-family: 'Playfair Display';
+    font-size: 70px;
+}
+
+header h2 {
+    font-family: 'Lato';
+    font-size: 30px;
+}
+
+header h1 , h2 {
+    color: var(--white);  
+    line-height: 5rem;
+}
+
+footer{
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    background-color: var(--greengray) ;
+    height: 20vh;
+    color: var(--white);
+    image-rendering: auto;
+}
+
+/*
+page generals
+*/

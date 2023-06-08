@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Application;
 use App\Repository\OfferRepository;
 use App\Repository\UserRepository;
+use App\Repository\DogRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -13,16 +14,20 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
 {
     protected $offerRepository;
     protected $userRepository;
-    public function __construct(OfferRepository $offerRepository, UserRepository $userRepository)
+    protected $dogRepository;
+    public function __construct(OfferRepository $offerRepository, UserRepository $userRepository, DogRepository $dogRepository)
     {
         $this->offerRepository = $offerRepository;
         $this->userRepository = $userRepository;
+        $this->dogRepository = $dogRepository;
     }
     public function load(ObjectManager $manager): void
     {
 
         $users = $this->userRepository->findAll();
         $offers = $this->offerRepository->findAll();
+        // $dogs = $this->dogRepository->findAll();
+
         $dateTime = new \DateTime() ;
         
         //Creation of 2 Applications
@@ -36,6 +41,7 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
             $randomNumber = mt_rand(0, count($users) - 1);
             $user = $users[$randomNumber] ;
             $breeder = $offer->getBreeder();
+            $offerDogs = $offer->getDogs();
             //Check if user != breeder
             if ( $user->getId() == $breeder->getId() ){
                 $randomNumber ++;
@@ -46,9 +52,7 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
                 $user = $users[$randomNumber] ;
             }
             $application->setUser($user);
-
-
-
+            $application->addDog($offerDogs[0]);
             $application->setDateTime($dateTime);
 
             $manager->persist($application);
@@ -62,6 +66,7 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
         return [
             UserFixtures::class,
             OfferFixtures::class,
+            DogFixtures::class,
         ];
     }
 }

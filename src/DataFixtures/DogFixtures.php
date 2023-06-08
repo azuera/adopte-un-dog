@@ -22,14 +22,6 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
 
     }
 
-    public function getDependencies()
-    {
-        return [
-            BreedFixtures::class,
-            OfferFixtures::class,
-        ];
-    }
-
     public function load(ObjectManager $manager)
     {
         $name = 'tobi';
@@ -51,8 +43,15 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
 
             $manager -> persist($dog);
 
-
         }
         $manager -> flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            BreedFixtures::class,
+            OfferFixtures::class,
+        ];
     }
 }

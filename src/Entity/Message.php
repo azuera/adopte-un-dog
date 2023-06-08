@@ -18,8 +18,8 @@ class Message
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateTime = null;
 
-    #[ORM\Column]
-    private ?bool $isSentByAdopter = null;
+    #[ORM\Column (options:["default"=>false])]
+    private ?bool $isSentByAdopter = false;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]

@@ -2,16 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\HasIdTrait;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 class Image
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use HasIdTrait;
 
     #[ORM\Column(length: 255)]
     private ?string $path = null;
@@ -19,11 +17,6 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'images')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Dog $dog = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getPath(): ?string
     {

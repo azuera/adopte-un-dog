@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\HasIdTrait;
 use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,10 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 class Message
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use HasIdTrait;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
@@ -26,11 +24,6 @@ class Message
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Application $application = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getText(): ?string
     {

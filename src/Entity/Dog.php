@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\HasIdTrait;
+use App\Entity\Traits\HasNameTrait;
+use App\Entity\Traits\HasDescrTrait;
 use App\Repository\DogRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,16 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: DogRepository::class)]
 class Dog
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use HasIdTrait;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    use HasNameTrait;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    use HasDescrTrait;
 
     #[ORM\Column]
     private ?bool $isLOF = null;
@@ -52,35 +50,6 @@ class Dog
         $this->images = new ArrayCollection();
         $this->applications = new ArrayCollection();
         $this->breeds = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
     }
 
     public function isIsLOF(): ?bool

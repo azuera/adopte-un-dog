@@ -101,6 +101,6 @@ class BreedFixtures extends Fixture
             $manager->persist($doggo);
 
         }
-
+    $manager->flush();
     }
 }

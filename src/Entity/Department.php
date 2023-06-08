@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\HasIdTrait;
+use App\Entity\Traits\HasNameTrait;
 use App\Repository\DepartmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,13 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: DepartmentRepository::class)]
 class Department
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use HasIdTrait;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    use HasNameTrait;
 
     #[ORM\Column(length: 8)]
     private ?string $number = null;
@@ -27,23 +25,6 @@ class Department
     public function __construct()
     {
         $this->users = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getNumber(): ?string

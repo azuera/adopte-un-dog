@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\HasIdTrait;
 use App\Repository\BreedRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,10 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: BreedRepository::class)]
 class Breed
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use HasIdTrait;
 
     #[ORM\ManyToMany(targetEntity: Dog::class, inversedBy: 'breeds')]
     private Collection $dogs;
@@ -21,11 +19,6 @@ class Breed
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     /**

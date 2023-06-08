@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Offer;
-use App\Repository\DogRepository;
 use App\Repository\BreederRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -12,11 +11,9 @@ use Doctrine\Persistence\ObjectManager;
 class OfferFixtures extends Fixture implements DependentFixtureInterface
 {
     protected $breederRepository;
-    protected $dogRepository;
-    public function __construct(BreederRepository $breederRepository, DogRepository $dogRepository)
+    public function __construct(BreederRepository $breederRepository)
     {
         $this->breederRepository = $breederRepository;
-        $this->dogRepository = $dogRepository;
     }
     public function load(ObjectManager $manager): void
     {
@@ -26,7 +23,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         $dateTime = new \DateTime() ;
 
         $breeders = $this->breederRepository->findAll();
-        $dogs = $this->dogRepository->findAll();
 
         //Creation of 4 Offers
         for ( $i = 0; $i < 4; $i++){
@@ -38,8 +34,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
             $offer->setDateTime($dateTime);
             //adding 1 breeder
             $offer->setBreeder($breeders[$i]);
-            //adding 1 dog
-            $offer->addDog($dogs[$i]);
             $manager->persist($offer);
         }
 
@@ -50,7 +44,6 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
-            DogFixtures::class,
         ];
     }
 }

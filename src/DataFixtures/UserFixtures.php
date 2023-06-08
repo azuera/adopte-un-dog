@@ -39,7 +39,7 @@ class UserFixtures extends Fixture
             $adopter->setEmail('un-autre-mail'.$i.'@mail.com');
             $password = $this->hasher->hashPassword($adopter, 'aze123');
             $adopter->setPassword($password);
-            $adopter->setName('Eleveur' . $i);
+            $adopter->setName('Utilisateur' . $i);
 
             $manager->persist($adopter);
         }

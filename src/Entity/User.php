@@ -21,30 +21,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     use HasIdTrait;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    protected ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = [];
+    protected array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    protected ?string $password = null;
 
     use HasNameTrait;
 
     #[ORM\Column(length: 128, nullable: true)]
-    private ?string $location = null;
+    protected ?string $location = null;
 
     #[ORM\Column(length: 64, nullable: true)]
-    private ?string $phone = null;
+    protected ?string $phone = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?Department $department = null;
+    protected ?Department $department = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Application::class)]
-    private Collection $applications;
+    protected Collection $applications;
 
     public function __construct()
     {

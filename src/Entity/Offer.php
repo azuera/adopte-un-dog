@@ -26,8 +26,8 @@ class Offer
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateTime = null;
 
-    #[ORM\Column]
-    private ?bool $isClosed = null;
+    #[ORM\Column (options:["default"=>false])]
+    private ?bool $isClosed = false;
 
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Application::class, orphanRemoval: true)]
     private Collection $applications;

@@ -20,8 +20,8 @@ class Dog
 
     use HasDescrTrait;
 
-    #[ORM\Column]
-    private ?bool $isLOF = null;
+    #[ORM\Column (options:["default"=>false])]
+    private ?bool $isLOF = false;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $history = null;
@@ -29,8 +29,8 @@ class Dog
     #[ORM\Column(type: Types::TEXT)]
     private ?string $sociability = null;
 
-    #[ORM\Column]
-    private ?bool $isAdopted = null;
+    #[ORM\Column (options:["default"=>false])]
+    private ?bool $isAdopted = false;
 
     #[ORM\ManyToOne(inversedBy: 'dogs')]
     #[ORM\JoinColumn(nullable: false)]

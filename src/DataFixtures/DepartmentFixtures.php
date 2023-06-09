@@ -5,9 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Department;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class DepartmentFixtures extends Fixture
 {
@@ -15,7 +13,7 @@ class DepartmentFixtures extends Fixture
 
     public function __construct(DecoderInterface $decoder)
     {
-        $this->decoder=$decoder;
+        $this->decoder = $decoder;
     }
 
     public function load(ObjectManager $manager)

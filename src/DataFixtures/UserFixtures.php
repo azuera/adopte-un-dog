@@ -30,7 +30,6 @@ class UserFixtures extends Fixture
             if ( $i%2 == 0 ){
                 $breeder->setIsAdmin(true);
             }
-
             $manager->persist($breeder);
         }
         //Creation of 4 regular Users
@@ -40,7 +39,6 @@ class UserFixtures extends Fixture
             $password = $this->hasher->hashPassword($adopter, 'aze123');
             $adopter->setPassword($password);
             $adopter->setName('Utilisateur' . $i);
-
             $manager->persist($adopter);
         }
         $manager->flush();

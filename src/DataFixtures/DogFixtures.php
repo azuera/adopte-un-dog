@@ -11,7 +11,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class DogFixtures extends Fixture implements DependentFixtureInterface
 {
-
     private OfferRepository $offerRepository;
     private BreedRepository $breedRepository;
 
@@ -19,7 +18,6 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
     {
         $this -> offerRepository = $offerRepository;
         $this -> breedRepository = $breedRepository;
-
     }
 
     public function load(ObjectManager $manager)
@@ -40,9 +38,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
             $dog -> setOffer($offers[$i]);
             $dog -> addBreed($breeds[mt_rand(0, count($breeds) - 1)]);
             $dog -> addBreed($breeds[mt_rand(0, count($breeds) - 1)]);
-
             $manager -> persist($dog);
-
         }
         $manager -> flush();
     }

@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Application;
 use App\Repository\OfferRepository;
 use App\Repository\UserRepository;
-use App\Repository\DogRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -15,19 +14,15 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
     protected $offerRepository;
     protected $userRepository;
     protected $dogRepository;
-    public function __construct(OfferRepository $offerRepository, UserRepository $userRepository, DogRepository $dogRepository)
+    public function __construct(OfferRepository $offerRepository, UserRepository $userRepository)
     {
         $this->offerRepository = $offerRepository;
         $this->userRepository = $userRepository;
-        $this->dogRepository = $dogRepository;
     }
     public function load(ObjectManager $manager): void
     {
-
         $users = $this->userRepository->findAll();
         $offers = $this->offerRepository->findAll();
-        // $dogs = $this->dogRepository->findAll();
-
         $dateTime = new \DateTime() ;
         
         //Creation of 2 Applications
@@ -57,7 +52,6 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
 
             $manager->persist($application);
         }
-
         $manager->flush();
     }
 

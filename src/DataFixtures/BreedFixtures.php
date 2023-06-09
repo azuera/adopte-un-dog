@@ -8,10 +8,9 @@ use Doctrine\Persistence\ObjectManager;
 
 class BreedFixtures extends Fixture
 {
-
     public function load(ObjectManager $manager)
     {
-        $breeds=[
+        $breeds = [
             "affenpinscher",
             "africanis",
             "american staffordshire",
@@ -96,10 +95,9 @@ class BreedFixtures extends Fixture
             "yorkshire"
         ];
         foreach ($breeds as $breed){
-            $doggo= (new Breed())
+            $doggo = (new Breed())
             ->setName($breed);
             $manager->persist($doggo);
-
         }
     $manager->flush();
     }

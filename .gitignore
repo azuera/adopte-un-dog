@@ -5,7 +5,10 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+<<<<<<< HEAD
 /public/media/dogs_images/
+=======
+>>>>>>> db5fd50 (récuperation)
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

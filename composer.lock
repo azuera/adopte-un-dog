@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "b7b5a1269b423ae6fa7f7797258d3dcf",
     "packages": [
         {
@@ -132,6 +133,11 @@
             "time": "2023-02-02T22:02:53+00:00"
         },
         {
+=======
+    "content-hash": "cff6df7db1b55bef388f61ba06edc1e2",
+    "packages": [
+        {
+>>>>>>> db5fd50 (récuperation)
             "name": "doctrine/cache",
             "version": "2.2.0",
             "source": {
@@ -854,6 +860,7 @@
         },
         {
             "name": "doctrine/inflector",
+<<<<<<< HEAD
             "version": "2.0.8",
             "source": {
                 "type": "git",
@@ -864,18 +871,38 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/inflector/zipball/f9301a5b2fb1216b2b08f02ba04dc45423db6bff",
                 "reference": "f9301a5b2fb1216b2b08f02ba04dc45423db6bff",
+=======
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/inflector.git",
+                "reference": "d9d313a36c872fd6ee06d9a6cbcf713eaa40f024"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/d9d313a36c872fd6ee06d9a6cbcf713eaa40f024",
+                "reference": "d9d313a36c872fd6ee06d9a6cbcf713eaa40f024",
+>>>>>>> db5fd50 (récuperation)
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
+<<<<<<< HEAD
                 "doctrine/coding-standard": "^11.0",
+=======
+                "doctrine/coding-standard": "^10",
+>>>>>>> db5fd50 (récuperation)
                 "phpstan/phpstan": "^1.8",
                 "phpstan/phpstan-phpunit": "^1.1",
                 "phpstan/phpstan-strict-rules": "^1.3",
                 "phpunit/phpunit": "^8.5 || ^9.5",
+<<<<<<< HEAD
                 "vimeo/psalm": "^4.25 || ^5.4"
+=======
+                "vimeo/psalm": "^4.25"
+>>>>>>> db5fd50 (récuperation)
             },
             "type": "library",
             "autoload": {
@@ -925,7 +952,11 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/inflector/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/doctrine/inflector/tree/2.0.8"
+=======
+                "source": "https://github.com/doctrine/inflector/tree/2.0.6"
+>>>>>>> db5fd50 (récuperation)
             },
             "funding": [
                 {
@@ -941,7 +972,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-06-16T13:40:37+00:00"
+=======
+            "time": "2022-10-20T09:10:12+00:00"
+>>>>>>> db5fd50 (récuperation)
         },
         {
             "name": "doctrine/instantiator",
@@ -1445,6 +1480,7 @@
             "time": "2022-05-23T21:33:49+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "easycorp/easyadmin-bundle",
             "version": "v4.6.6",
             "source": {
@@ -1539,6 +1575,8 @@
             "time": "2023-05-30T18:19:51+00:00"
         },
         {
+=======
+>>>>>>> db5fd50 (récuperation)
             "name": "egulias/email-validator",
             "version": "4.0.1",
             "source": {
@@ -1606,6 +1644,7 @@
             "time": "2023-01-14T14:17:03+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "gedmo/doctrine-extensions",
             "version": "v3.11.1",
             "source": {
@@ -1951,6 +1990,19 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e2392369686d420ca32df3803de28b5d6f76867d",
                 "reference": "e2392369686d420ca32df3803de28b5d6f76867d",
+=======
+            "name": "monolog/monolog",
+            "version": "3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "9b5daeaffce5b926cac47923798bba91059e60e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/9b5daeaffce5b926cac47923798bba91059e60e2",
+                "reference": "9b5daeaffce5b926cac47923798bba91059e60e2",
+>>>>>>> db5fd50 (récuperation)
                 "shasum": ""
             },
             "require": {
@@ -1965,7 +2017,11 @@
                 "doctrine/couchdb": "~1.0@dev",
                 "elasticsearch/elasticsearch": "^7 || ^8",
                 "ext-json": "*",
+<<<<<<< HEAD
                 "graylog2/gelf-php": "^1.4.2 || ^2.0",
+=======
+                "graylog2/gelf-php": "^1.4.2 || ^2@dev",
+>>>>>>> db5fd50 (récuperation)
                 "guzzlehttp/guzzle": "^7.4.5",
                 "guzzlehttp/psr7": "^2.2",
                 "mongodb/mongodb": "^1.8",
@@ -1973,7 +2029,11 @@
                 "phpstan/phpstan": "^1.9",
                 "phpstan/phpstan-deprecation-rules": "^1.0",
                 "phpstan/phpstan-strict-rules": "^1.4",
+<<<<<<< HEAD
                 "phpunit/phpunit": "^10.1",
+=======
+                "phpunit/phpunit": "^9.5.26",
+>>>>>>> db5fd50 (récuperation)
                 "predis/predis": "^1.1 || ^2",
                 "ruflin/elastica": "^7",
                 "symfony/mailer": "^5.4 || ^6",
@@ -2026,7 +2086,11 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/Seldaek/monolog/tree/3.4.0"
+=======
+                "source": "https://github.com/Seldaek/monolog/tree/3.3.1"
+>>>>>>> db5fd50 (récuperation)
             },
             "funding": [
                 {
@@ -2038,7 +2102,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-06-21T08:46:11+00:00"
+=======
+            "time": "2023-02-06T13:46:10+00:00"
+>>>>>>> db5fd50 (récuperation)
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2562,6 +2630,7 @@
             "time": "2021-07-14T16:46:02+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "stof/doctrine-extensions-bundle",
             "version": "v1.7.1",
             "source": {
@@ -2636,6 +2705,8 @@
             "time": "2022-09-30T11:52:24+00:00"
         },
         {
+=======
+>>>>>>> db5fd50 (récuperation)
             "name": "symfony/asset",
             "version": "v6.3.0",
             "source": {
@@ -5810,6 +5881,7 @@
             "time": "2022-11-03T14:55:06+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/polyfill-uuid",
             "version": "v1.27.0",
             "source": {
@@ -5892,6 +5964,8 @@
             "time": "2022-11-03T14:55:06+00:00"
         },
         {
+=======
+>>>>>>> db5fd50 (récuperation)
             "name": "symfony/process",
             "version": "v6.3.0",
             "source": {
@@ -7309,6 +7383,7 @@
             "time": "2023-05-06T09:53:41+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/uid",
             "version": "v6.3.0",
             "source": {
@@ -7383,6 +7458,8 @@
             "time": "2023-04-08T07:25:02+00:00"
         },
         {
+=======
+>>>>>>> db5fd50 (récuperation)
             "name": "symfony/validator",
             "version": "v6.3.0",
             "source": {
@@ -7790,6 +7867,7 @@
         },
         {
             "name": "twig/extra-bundle",
+<<<<<<< HEAD
             "version": "v3.6.1",
             "source": {
                 "type": "git",
@@ -7800,6 +7878,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/twigphp/twig-extra-bundle/zipball/802cc2dd46ec88285d6c7fa85c26ab7f2cd5bc49",
                 "reference": "802cc2dd46ec88285d6c7fa85c26ab7f2cd5bc49",
+=======
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/twig-extra-bundle.git",
+                "reference": "4a9674e775f49a9df5e26da66546e8f3364afe67"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/twig-extra-bundle/zipball/4a9674e775f49a9df5e26da66546e8f3364afe67",
+                "reference": "4a9674e775f49a9df5e26da66546e8f3364afe67",
+>>>>>>> db5fd50 (récuperation)
                 "shasum": ""
             },
             "require": {
@@ -7848,7 +7938,11 @@
                 "twig"
             ],
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/twigphp/twig-extra-bundle/tree/v3.6.1"
+=======
+                "source": "https://github.com/twigphp/twig-extra-bundle/tree/v3.6.0"
+>>>>>>> db5fd50 (récuperation)
             },
             "funding": [
                 {
@@ -7860,6 +7954,7 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-05-06T11:11:46+00:00"
         },
         {
@@ -7874,6 +7969,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/twigphp/Twig/zipball/7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd",
                 "reference": "7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd",
+=======
+            "time": "2023-04-14T11:03:02+00:00"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "106c170d08e8415d78be2d16c3d057d0d108262b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/106c170d08e8415d78be2d16c3d057d0d108262b",
+                "reference": "106c170d08e8415d78be2d16c3d057d0d108262b",
+>>>>>>> db5fd50 (récuperation)
                 "shasum": ""
             },
             "require": {
@@ -7919,7 +8030,11 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/twigphp/Twig/tree/v3.6.1"
+=======
+                "source": "https://github.com/twigphp/Twig/tree/v3.6.0"
+>>>>>>> db5fd50 (récuperation)
             },
             "funding": [
                 {
@@ -7931,6 +8046,7 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-06-08T12:52:13+00:00"
         },
         {
@@ -8040,6 +8156,9 @@
                 "source": "https://github.com/dustin10/VichUploaderBundle/tree/2.1.1"
             },
             "time": "2023-03-07T07:01:20+00:00"
+=======
+            "time": "2023-05-03T19:06:57+00:00"
+>>>>>>> db5fd50 (récuperation)
         },
         {
             "name": "webmozart/assert",
@@ -8879,6 +8998,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
             "version": "9.6.9",
             "source": {
                 "type": "git",
@@ -8889,6 +9009,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a9aceaf20a682aeacf28d582654a1670d8826778",
                 "reference": "a9aceaf20a682aeacf28d582654a1670d8826778",
+=======
+            "version": "9.6.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/17d621b3aff84d0c8b62539e269e87d8d5baa76e",
+                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e",
+>>>>>>> db5fd50 (récuperation)
                 "shasum": ""
             },
             "require": {
@@ -8962,7 +9094,11 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
+<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.9"
+=======
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.8"
+>>>>>>> db5fd50 (récuperation)
             },
             "funding": [
                 {
@@ -8978,7 +9114,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-06-11T06:13:56+00:00"
+=======
+            "time": "2023-05-11T05:14:45+00:00"
+>>>>>>> db5fd50 (récuperation)
         },
         {
             "name": "sebastian/cli-parser",
@@ -10220,6 +10360,7 @@
         },
         {
             "name": "symfony/maker-bundle",
+<<<<<<< HEAD
             "version": "v1.49.0",
             "source": {
                 "type": "git",
@@ -10230,6 +10371,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/ce1d424f76bbb377f1956cc7641e8e2eafe81cde",
                 "reference": "ce1d424f76bbb377f1956cc7641e8e2eafe81cde",
+=======
+            "version": "v1.48.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/maker-bundle.git",
+                "reference": "2e428e8432e9879187672fe08f1cc335e2a31dd6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/2e428e8432e9879187672fe08f1cc335e2a31dd6",
+                "reference": "2e428e8432e9879187672fe08f1cc335e2a31dd6",
+>>>>>>> db5fd50 (récuperation)
                 "shasum": ""
             },
             "require": {
@@ -10243,8 +10396,12 @@
                 "symfony/filesystem": "^5.4.7|^6.0",
                 "symfony/finder": "^5.4.3|^6.0",
                 "symfony/framework-bundle": "^5.4.7|^6.0",
+<<<<<<< HEAD
                 "symfony/http-kernel": "^5.4.7|^6.0",
                 "symfony/process": "^5.4.7|^6.0"
+=======
+                "symfony/http-kernel": "^5.4.7|^6.0"
+>>>>>>> db5fd50 (récuperation)
             },
             "conflict": {
                 "doctrine/doctrine-bundle": "<2.4",
@@ -10256,8 +10413,14 @@
                 "doctrine/doctrine-bundle": "^2.4",
                 "doctrine/orm": "^2.10.0",
                 "symfony/http-client": "^5.4.7|^6.0",
+<<<<<<< HEAD
                 "symfony/phpunit-bridge": "^5.4.17|^6.0",
                 "symfony/polyfill-php80": "^1.16.0",
+=======
+                "symfony/phpunit-bridge": "^5.4.7|^6.0",
+                "symfony/polyfill-php80": "^1.16.0",
+                "symfony/process": "^5.4.7|^6.0",
+>>>>>>> db5fd50 (récuperation)
                 "symfony/security-core": "^5.4.7|^6.0",
                 "symfony/yaml": "^5.4.3|^6.0",
                 "twig/twig": "^2.0|^3.0"
@@ -10293,7 +10456,11 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/maker-bundle/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/maker-bundle/tree/v1.49.0"
+=======
+                "source": "https://github.com/symfony/maker-bundle/tree/v1.48.0"
+>>>>>>> db5fd50 (récuperation)
             },
             "funding": [
                 {
@@ -10309,7 +10476,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-06-07T13:10:14+00:00"
+=======
+            "time": "2022-11-14T10:48:46+00:00"
+>>>>>>> db5fd50 (récuperation)
         },
         {
             "name": "symfony/phpunit-bridge",

@@ -19,9 +19,6 @@ class Breed
     #[ORM\ManyToMany(targetEntity: Dog::class, inversedBy: 'breeds')]
     private Collection $dogs;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
-
     public function __construct()
     {
         $this->dogs = new ArrayCollection();

@@ -1,3 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Accueil{% endblock %}
+
+{% block body %}
+<h2>Nos dernières annonces</h2>
+    {% for offer in offers %}
+    <div class="card mb-3">
+        {# <div class="d-flex gap-2">
+            <img src="{{asset('/media/poppy_1.jpg')}}" class="card-img-top" alt="...">
+            <div class = "d-flex flex-column mh-100 gap-3">
+            <img src="{{asset('/media/poppy_2.jpg')}}" class="card-img-top mh-100" alt="...">
+            <img src="{{asset('/media/poppy_3.jpg')}}" class="card-img-top" alt="...">
+            </div>
+        </div> #}
+        <div class="card-body">
+            <h5 class="card-title">{{ offer.title }}</h5>
+            
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock body %}

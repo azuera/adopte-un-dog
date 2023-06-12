@@ -3,16 +3,19 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\OfferRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/default', name: 'app_default')]
-    public function index(): Response
+
+    #[Route('/', name: 'app_default')]
+    public function index(OfferRepository $offerRepository): Response
     {
+        $offers = $offerRepository->findBy([ 'isClosed' => false ], ['dateTime' => 'DESC'], 5);
         return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
+            'offers' => $offers,
         ]);
     }
 } 

@@ -37,6 +37,11 @@ header h1 {
     margin-bottom: 20px;
 }
 
+h2 {
+    font-family: 'Playfair Display';
+    font-size: 28px;
+}
+
 header p {
     font-family: 'Lato';
     font-size: 24px;

@@ -39,28 +39,21 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Offer[] Returns an array of Offer objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Offer
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findForHome():array
+    {
+        return $this->createQueryBuilder('o')
+        ->select([
+            'o',
+        ])
+            ->leftJoin('o.dogs', 'd')
+            ->leftJoin('d.breeds', 'b')
+            ->leftJoin('d.images', 'i')
+            ->andWhere('o.isClosed = false')
+            ->orderBy('o.dateTime', 'DESC')
+            ->setMaxResults(5)
+            ->groupBy('o.id')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -164,4 +164,15 @@ class Offer
 
         return $this;
     }
+
+    public function getBreeds(): array
+    {
+        $breeds = [];
+        foreach($this->getDogs() as $dog){
+            foreach ($dog->getBreeds() as $breed) {
+                $breeds[] = $breed;
+            }
+        }
+        return $breeds;
+    }
 }

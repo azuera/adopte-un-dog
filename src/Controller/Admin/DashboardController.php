@@ -42,18 +42,16 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Adopte Un Dog');
-
-
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Applications', 'fas fa-list', Application::class);
-        yield MenuItem::linkToCrud('Breeds', 'fas fa-list', Breed::class);
-        yield MenuItem::linkToCrud('Breeders', 'fas fa-list', Breeder::class);
-        yield MenuItem::linkToCrud('Departments', 'fas fa-list', Department::class);
-        yield MenuItem::linkToCrud('Dogs', 'fas fa-list', Dog::class);
-        yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Applications', 'fas fa-book', Application::class);
+        yield MenuItem::linkToCrud('Breeds', 'fas fa-sign', Breed::class);
+        yield MenuItem::linkToCrud('Breeders', 'fa fa-phone', Breeder::class);
+        yield MenuItem::linkToCrud('Departments', 'fa fa-location-dot', Department::class);
+        yield MenuItem::linkToCrud('Dogs', 'fas fa-dog', Dog::class);
+        yield MenuItem::linkToCrud('Users', 'fa fa-circle-user', User::class);
     }
 }

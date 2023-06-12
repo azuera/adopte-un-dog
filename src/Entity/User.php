@@ -31,6 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     protected ?string $password = null;
+    private ?string $PlainPassword = null;
 
     use HasNameTrait;
 
@@ -181,4 +182,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+	/**
+	 * @return 
+	 */
+	public function getPlainPassword(): ?string {
+		return $this->PlainPassword;
+	}
+	
+	/**
+	 * @param  $PlainPassword 
+	 * @return self
+	 */
+	public function setPlainPassword(?string $PlainPassword): self {
+		$this->PlainPassword = $PlainPassword;
+		return $this;
+	}
 }

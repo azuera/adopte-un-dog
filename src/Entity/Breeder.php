@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: BreederRepository::class)]
 class Breeder extends User
 {
-    #[ORM\Column (options:["default"=>false])]
+    #[ORM\Column(options: ["default" => false])]
     private ?bool $isAdmin = false;
 
     #[ORM\OneToMany(mappedBy: 'breeder', targetEntity: Offer::class, orphanRemoval: true)]
@@ -62,5 +62,20 @@ class Breeder extends User
         }
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = parent::getRoles();
+        $roles[] = 'ROLE_BREEDER';
+
+        if ($this->isIsAdmin()) {
+            $roles[] = 'ROLE_ADMIN';
+        }
+
+        return array_unique($roles);
     }
 }

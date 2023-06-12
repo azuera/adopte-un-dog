@@ -3,19 +3,17 @@
 namespace App\Entity;
 
 use App\Entity\Traits\HasIdTrait;
+use App\Entity\Traits\HasCreatedTime;
 use App\Repository\ApplicationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ApplicationRepository::class)]
 class Application
 {
     use HasIdTrait;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateTime = null;
+    use HasCreatedTime;
 
     #[ORM\ManyToOne(inversedBy: 'applications')]
     #[ORM\JoinColumn(nullable: false)]
@@ -35,18 +33,6 @@ class Application
     {
         $this->messages = new ArrayCollection();
         $this->dogs = new ArrayCollection();
-    }
-
-    public function getDateTime(): ?\DateTimeInterface
-    {
-        return $this->dateTime;
-    }
-
-    public function setDateTime(\DateTimeInterface $dateTime): self
-    {
-        $this->dateTime = $dateTime;
-
-        return $this;
     }
 
     public function getUser(): ?User

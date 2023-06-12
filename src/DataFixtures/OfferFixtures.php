@@ -21,6 +21,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce luctus neque justo, id vulputate velit malesuada in. Donec vulputate ipsum vitae orci vestibulum, et tempus orci hendrerit.';
         $location = 'Lyon';
         $dateTime = new \DateTime() ;
+        $updateTime = $dateTime->modify('+1 day');
         $breeders = $this->breederRepository->findAll();
 
         //Creation of 4 Offers
@@ -29,8 +30,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
             $offer->setTitle($title);
             $offer->setDescription($description);
             $offer->setLocation($location);
-            $dateTime->modify('-' . mt_rand(0,100) . 'minutes');
             $offer->setDateTime($dateTime);
+            $offer->setUpdatedTime($updateTime);
             //adding 1 breeder
             $offer->setBreeder($breeders[$i]);
             $manager->persist($offer);

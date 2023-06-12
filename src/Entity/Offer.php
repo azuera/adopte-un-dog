@@ -4,27 +4,26 @@ namespace App\Entity;
 
 use App\Entity\Traits\HasIdTrait;
 use App\Entity\Traits\HasDescrTrait;
+use App\Entity\Traits\HasCreatedTime;
 use App\Repository\OfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
 {
     use HasIdTrait;
+    use HasDescrTrait;
+    use HasCreatedTime;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     private ?string $location = null;
-
-    use HasDescrTrait;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateTime = null;
 
     #[ORM\Column (options:["default"=>false])]
     private ?bool $isClosed = false;
@@ -38,6 +37,10 @@ class Offer
 
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Dog::class, orphanRemoval: true)]
     private Collection $dogs;
+
+    #[ORM\Column(name: 'updated_time', type: Types::DATE_MUTABLE)]
+    #[Gedmo\Timestampable]
+    private ?\DateTimeInterface $updatedTime = null ;
 
     public function __construct()
     {
@@ -65,18 +68,6 @@ class Offer
     public function setLocation(string $location): self
     {
         $this->location = $location;
-
-        return $this;
-    }
-
-    public function getDateTime(): ?\DateTimeInterface
-    {
-        return $this->dateTime;
-    }
-
-    public function setDateTime(\DateTimeInterface $dateTime): self
-    {
-        $this->dateTime = $dateTime;
 
         return $this;
     }
@@ -174,5 +165,17 @@ class Offer
             }
         }
         return $breeds;
+    }
+
+    public function getUpdatedTime(): ?\DateTimeInterface
+    {
+        return $this->updatedTime;
+    }
+
+    public function setUpdatedTime(\DateTimeInterface $updatedTime): self
+    {
+        $this->updatedTime = $updatedTime;
+
+        return $this;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\HasIdTrait;
+use App\Entity\Traits\HasCreatedTime;
 use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,12 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Message
 {
     use HasIdTrait;
+    use HasCreatedTime;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateTime = null;
 
     #[ORM\Column (options:["default"=>false])]
     private ?bool $isSentByAdopter = false;
@@ -33,18 +32,6 @@ class Message
     public function setText(string $text): self
     {
         $this->text = $text;
-
-        return $this;
-    }
-
-    public function getDateTime(): ?\DateTimeInterface
-    {
-        return $this->dateTime;
-    }
-
-    public function setDateTime(\DateTimeInterface $dateTime): self
-    {
-        $this->dateTime = $dateTime;
 
         return $this;
     }

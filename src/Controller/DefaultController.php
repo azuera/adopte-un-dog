@@ -15,9 +15,11 @@ class DefaultController extends AbstractController
     public function index(OfferRepository $offerRepository, BreederRepository $breederRepository): Response
     {
         $offers = $offerRepository->findForHome();
-        // dd($offers);
+        $breeders = $breederRepository->findForHome();
+        // dd($breeders);
         return $this->render('default/index.html.twig', [
             'offers' => $offers,
+            'breeders' => $breeders,
         ]);
     }
 } 

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,7 +40,7 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findForHome():array
+    public function findOffers():QueryBuilder
     {
         return $this->createQueryBuilder('o')
         ->select([
@@ -49,9 +50,14 @@ class OfferRepository extends ServiceEntityRepository
             ->leftJoin('d.breeds', 'b')
             ->leftJoin('d.images', 'i')
             ->andWhere('o.isClosed = false')
-            ->orderBy('o.dateTime', 'DESC')
-            ->setMaxResults(5)
             ->groupBy('o.id')
+            ->orderBy('o.dateTime', 'DESC')
+            ;
+    }
+    public function findForHome():array
+    {
+        return $this->findOffers()
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult()
         ;

@@ -18,26 +18,31 @@
 	</head>
 	<body>
 		{%block header %}
-			<header class="text-center ">
+			<header class="text-center">
+			<div>
 				<h1 class=" ">Adopte un Dog</h1>
-				<h2>Trouve le compagnon idéal chez nos éleveurs et nos refuges SPA</h2>
+				<p>Trouve le compagnon idéal chez nos éleveurs et nos refuges SPA</p>
+			</div>
 			</header>
-           {% endblock %}
-            {%block nav %}
-				{% include "_nav.html.twig" %}
+        {% endblock %}
+
+        {%block nav %}
+			{% include "_nav.html.twig" %}
 		{% endblock %}
 
-           {% block body %}{% endblock %}
+        {% block body %}{% endblock %}
 
-			{% block footer %}
-				<footer class="align-middle">
-					<img src="{{asset("/media/paw-logo.jpg")}}" alt="paw-logo">
-					<p>2023 ©Adopte un dog</p>
-                    <div></div>
-				</footer>
-			{% endblock %}
-
-
+		{% block footer %}
+			<footer>
+				<div class="container d-flex align-items-center justify-content-between">
+					<div class="w-25">
+						<img src="{{asset("/media/paw-logo.jpg")}}" alt="paw-logo">
+					</div>
+					<p class="w-50 text-center">2023 © Adopte un dog</p>
+					<div class="w-25"></div>
+				</div>
+			</footer>
+		{% endblock %}
 	</body>
 </html>
 

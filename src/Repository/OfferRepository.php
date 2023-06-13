@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,28 +40,26 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Offer[] Returns an array of Offer objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Offer
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOffers():QueryBuilder
+    {
+        return $this->createQueryBuilder('o')
+        ->select([
+            'o',
+        ])
+            ->leftJoin('o.dogs', 'd')
+            ->leftJoin('d.breeds', 'b')
+            ->leftJoin('d.images', 'i')
+            ->andWhere('o.isClosed = false')
+            ->groupBy('o.id')
+            ->orderBy('o.updatedTime', 'DESC')
+            ;
+    }
+    public function findForHome():array
+    {
+        return $this->findOffers()
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

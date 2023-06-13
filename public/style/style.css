@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
-    --white : #FFFFFF ; 
+    --white : #FFFFFF ;
+    --black : #000000 ; 
     --greengray : #6b935c;
     --bluegray: #CBCBCB ;
     --navbarcolor : #D9D9D9 ; 
 }
 
-/* 
-settings 
-*/
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    background-color: var(--bluegray);
+    color : var(--black);
+}
+
 header {
 background-image: linear-gradient(to top right, 
     rgba(0, 0, 0,0.7), 
@@ -19,37 +24,45 @@ background-repeat: no-repeat;
 background-position: 50% 60%;
 background-size: cover;
 padding: 5px;
-height: 25rem;
+}
+
+header div {
+    margin: 150px auto;
+    text-align: center;
 }
 
 header h1 {
-    margin-top: 12rem;
     font-family: 'Playfair Display';
-    font-size: 70px;
+    font-size: 68px;
+    margin-bottom: 20px;
 }
 
-header h2 {
+h2 {
+    font-family: 'Playfair Display';
+    font-size: 28px;
+}
+
+header p {
     font-family: 'Lato';
-    font-size: 30px;
+    font-size: 24px;
 }
 
-header h1 , h2 {
+header h1 , header p {
     color: var(--white);  
-    line-height: 5rem;
+    line-height: 100%;
 }
 
 footer{
     margin-bottom: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    vertical-align: middle;
-    background-color: var(--greengray) ;
-    height: 20vh;
+    margin-top : 50px;
+    /* height : 200px; */
+    padding : 5px 0px;
+    font-size: 20px;
     color: var(--white);
-    image-rendering: auto;
+    background-color: var(--greengray);
 }
 
-/*
-page generals
-*/
+footer img {
+    height : 180px;
+    aspect-ratio: 1/1;
+}

@@ -29,13 +29,13 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
         $offers = $this -> offerRepository -> findAll();
         $breeds = $this -> breedRepository -> findAll();
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $dog = new Dog();
             $dog -> setName($name . $i);
             $dog -> setDescription($description);
             $dog -> setHistory($history);
             $dog -> setSociability($sociability);
-            $dog -> setOffer($offers[$i]);
+            $dog -> setOffer($offers[mt_rand(0, count($offers) - 1)]);
             $dog -> addBreed($breeds[mt_rand(0, count($breeds) - 1)]);
             $dog -> addBreed($breeds[mt_rand(0, count($breeds) - 1)]);
             $manager -> persist($dog);

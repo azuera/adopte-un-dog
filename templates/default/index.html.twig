@@ -1,3 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="container mb-4">
+<h2 class="mb-2">Nos dernières annonces</h2>
+    {% for offer in offers %}
+        {% include "offer/_offer_card.html.twig" with {offer: offer}  %}
+    {% endfor %}
+
+<h2 class="mt-5 mb-3">Nos éleveurs et associations</h2>
+<table class="w-75 mx-auto table table-striped">
+    <tr>
+        <th>Nom de l'éleveur</th>
+        <th>Nombre d'annonces en cours</th>
+        <th>Nombre d'annonces pourvues</th>
+    </tr>
+    {% for breeder in breeders %}
+    <tr>
+        <td> {{ breeder.name }} </td>
+        <td> {{ breeder.offers|filter(o => o.isClosed == false)|length }} </td>
+        <td> {{ breeder.offers|filter(o => o.isClosed == true)|length }} </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% endblock body %}

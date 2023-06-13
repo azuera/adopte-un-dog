@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 trait HasCreatedTime
 {
     #[Gedmo\Timestampable(on: 'create')]
-    #[ORM\Column(name: 'created_time', type: Types::DATE_MUTABLE)]
+    #[ORM\Column(name: 'created_time', type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateTime = null;
 
     public function getDateTime(): ?\DateTimeInterface

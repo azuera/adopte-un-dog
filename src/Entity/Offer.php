@@ -38,7 +38,7 @@ class Offer
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Dog::class, orphanRemoval: true)]
     private Collection $dogs;
 
-    #[ORM\Column(name: 'updated_time', type: Types::DATE_MUTABLE)]
+    #[ORM\Column(name: 'updated_time', type: Types::DATETIME_MUTABLE)]
     #[Gedmo\Timestampable]
     private ?\DateTimeInterface $updatedTime = null ;
 

@@ -40,6 +40,7 @@ class Dog
     private Collection $images;
 
     #[ORM\ManyToMany(targetEntity: Application::class, inversedBy: 'dogs')]
+    #[ORM\JoinColumn(nullable: true)]
     private Collection $applications;
 
     #[ORM\ManyToMany(targetEntity: Breed::class, mappedBy: 'dogs')]

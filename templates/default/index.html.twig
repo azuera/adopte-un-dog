@@ -27,7 +27,7 @@
         </div>
     {% endfor %}
 
-<h2>Nos éleveurs et associations</h2>
+<h2 class="mt-4 mb-2">Nos éleveurs et associations</h2>
 <table class="container table table-striped">
     <tr>
         <th>Nom de l'éleveur</th>
@@ -37,8 +37,8 @@
     {% for breeder in breeders %}
     <tr>
         <td> {{ breeder.name }} </td>
-        <td> {{ breeder.offers|length }} </td>
-        <td> {{ breeder.name }} </td>
+        <td> {{ breeder.offers|filter(o => o.isClosed == false)|length }} </td>
+        <td> {{ breeder.offers|filter(o => o.isClosed == true)|length }} </td>
     </tr>
     {% endfor %}
 </table>

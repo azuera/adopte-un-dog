@@ -42,7 +42,7 @@ class BreederRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('b')
         ->select([
-            'b',
+            'b', 
         ])
             ->leftJoin('b.offers', 'o')
             ->orderBy('o.dateTime', 'DESC')

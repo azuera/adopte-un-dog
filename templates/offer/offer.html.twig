@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre numéro : {{offer.id}}{% endblock %}
+
+
+{% block body %}
+
+{{ dump() }}
+
+<h2>{{ offer.title }}</h2>
+
+{# 3 premiere photos#}
+{# @TODO #}
+<img class="offerImg" src="{{asset("/media/poppy_1.jpg")}}" alt="">
+<img class="offerImg" src="{{asset("/media/poppy_2.jpg")}}" alt="">
+<img class="offerImg" src="{{asset("/media/poppy_3.jpg")}}" alt="">
+{# {% for i in 1..3 %}
+    <img src="{{asset("/media/poppy_{i}.jpg")}}" alt="">
+    {{i}};
+{% endfor %} #}
+
+{# description de l'annonce #}
+<h3>description</h3>
+<p>{{ offer.description }}</p>
+
+{# Location #}
+<h3>Localisation</h3>
+<p>{{ offer.location }}</p>
+
+{# Date #}
+<h3>Date d'ouverture de l'annonce</h3>
+<p>{{ offer.dateTime|date("d/m/Y") }}</p>
+
+
+{# Dogs list #}
+<h3>Liste des chiens à l'adoption</h3>
+{% for dog in offer.dogs %}
+
+
+    {# {{ dump() }} #}
+
+    <div class="row wrap">
+
+
+
+
+
+
+
+
+        {# Images #}
+        {# une à 5 images (path Image) (carrousel) #}
+    {# DOG #}
+
+<div class="card" style="width: 18rem;">
+    {# TODO Carousel #}
+
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+
+
+
+
+
+
+    {# <img src="{{asset("/media/poppy_1.jpg")}}" class="card-img-top" alt="..."> #}
+    <div style="height: 200px;">
+        <img class="card-img-top rounded h-100 object-fit-cover" src="{{asset("/media/poppy_1.jpg")}}" alt="">
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+        {# Name #}
+            <h5 class="card-title">{{ dog.name }}</h5>
+        {# isLOF #}
+            {% if dog.isLOF %}
+                <span class="badge bg-info">Chien LOF</span>
+            {% endif %}
+        </div>
+        {# Breeds #}
+            <p><span class="text-decoration-underline">Race</span> :<br> 
+            {% for breed in dog.breeds %}
+            {# TODO Mettre un . pour le last #}
+                {{ breed.name }},
+            {% endfor %}
+            </p>
+            <p class="card-text"></p>
+        {# description #}
+            <p class="card-text">
+                <span class="text-decoration-underline">Description du chien</span> :
+                <br>{{ dog.description }}
+            </p>
+        {# History #}
+            <p class="card-text">
+                <span class="text-decoration-underline">Ses antécédents</span> :
+                <br>{{ dog.history }}
+            </p>
+        {# Sociability #}
+            <p class="card-text">
+                <span class="text-decoration-underline">Sociabilité</span> :
+                <br>{{ dog.sociability }}
+            </p>
+        {# isAdopted #}
+            {% if not dog.isAdopted %}
+                <p class="badge bg-success">Chien Adoptable</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            {% else %}
+                <p class="badge bg-danger">Chien Adopter</p>
+            {% endif %}
+    </div>
+</div>
+
+
+
+
+    </div>
+{% endfor %}
+
+
+
+    {# isClosed #}
+    {% if not offer.isClosed %}
+    {# @TODO (modifier path avec la page réponse) #}
+        <a href="{{ path('app_default') }}">
+            <button type="button" class="btn btn-success">Répondre à l'annonce
+            </button>
+        </a>
+    {% else %}
+        <p>L'annonce est fermée</p>
+    {% endif %}
+
+
+
+    {#
+        Faire sous la forme de cartes Bootstrap avec
+    #}
+{% endblock %}

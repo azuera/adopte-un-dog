@@ -25,7 +25,13 @@ class Offer
     #[ORM\Column(length: 255)]
     private ?string $location = null;
 
-    #[ORM\Column (options:["default"=>false])]
+    use HasDescrTrait;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateTime = null;
+
+    #[ORM\Column(options: ["default" => false])]
+
     private ?bool $isClosed = false;
 
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Application::class, orphanRemoval: true)]
@@ -40,7 +46,7 @@ class Offer
 
     #[ORM\Column(name: 'updated_time', type: Types::DATETIME_MUTABLE)]
     #[Gedmo\Timestampable]
-    private ?\DateTimeInterface $updatedTime = null ;
+    private ?\DateTimeInterface $updatedTime = null;
 
     public function __construct()
     {
@@ -159,7 +165,7 @@ class Offer
     public function getBreeds(): array
     {
         $breeds = [];
-        foreach($this->getDogs() as $dog){
+        foreach ($this->getDogs() as $dog) {
             foreach ($dog->getBreeds() as $breed) {
                 $breeds[] = $breed;
             }

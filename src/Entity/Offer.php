@@ -200,5 +200,9 @@ class Offer
         }
         return $isDogLof;
     }
+    
+    public function __toString():string{
+        return $this->getTitle();
+    }
 
 }

@@ -30,7 +30,7 @@ class PasswordUpdateUserSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if (!($entity instanceof User || empty($entity->getPlainPassword()))) {
+        if (!$entity instanceof User || empty($entity->getPlainPassword())) {
             return;
         }
 

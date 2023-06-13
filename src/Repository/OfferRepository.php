@@ -51,7 +51,7 @@ class OfferRepository extends ServiceEntityRepository
             ->leftJoin('d.images', 'i')
             ->andWhere('o.isClosed = false')
             ->groupBy('o.id')
-            ->orderBy('o.dateTime', 'DESC')
+            ->orderBy('o.updatedTime', 'DESC')
             ;
     }
     public function findForHome():array

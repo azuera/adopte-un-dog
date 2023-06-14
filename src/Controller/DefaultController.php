@@ -16,10 +16,19 @@ class DefaultController extends AbstractController
     {
         $offers = $offerRepository->findForHome();
         $breeders = $breederRepository->findForHome();
-        // dd($breeders);
         return $this->render('default/index.html.twig', [
             'offers' => $offers,
             'breeders' => $breeders,
         ]);
     }
-}
+
+    // @TODO Move to OfferController //
+    #[Route('/annonces', name: 'offers_list')]
+    public function listOffers(OfferRepository $offerRepository): Response
+    {
+        $offers = $offerRepository->findAllOffers();
+        return $this->render('default/offers_list.html.twig', [
+            'offers' => $offers,
+        ]);
+    }
+} 

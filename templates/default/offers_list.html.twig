@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des annonces{% endblock %}
+
+{% block body %}
+<div class="container mb-4">
+<h2 class="mb-2">Nos annonces</h2>
+    {% for offer in offers %}
+        {% include "offer/_offer_card.html.twig" with {offer: offer}  %}
+    {% endfor %}
+</div>
+
+{% endblock body %}

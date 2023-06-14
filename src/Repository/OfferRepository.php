@@ -62,4 +62,11 @@ class OfferRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findAllOffers():array{
+        return $this->findOffers()
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

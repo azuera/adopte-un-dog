@@ -9,7 +9,10 @@
         {% include "offer/_offer_card.html.twig" with {offer: offer}  %}
     {% endfor %}
 </div>
-    <div class="navigation">
-    {{ knp_pagination_render(offers) }}
-    </div>
+    {{ knp_pagination_render(offers, null, {}, {
+        'align': 'center',
+        'size': 'small',
+        'rounded': true,
+        }) 
+    }}
 {% endblock body %}

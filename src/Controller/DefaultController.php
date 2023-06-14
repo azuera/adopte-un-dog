@@ -32,7 +32,7 @@ class DefaultController extends AbstractController
         $offers = $paginator->paginate(
             $offers,
             $request->query->getInt('page', 1),
-            3
+            2
         );
         return $this->render('offer/offers_list.html.twig', [
             'offers' => $offers,

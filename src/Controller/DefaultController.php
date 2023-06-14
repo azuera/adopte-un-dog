@@ -23,11 +23,11 @@ class DefaultController extends AbstractController
     }
 
     // @TODO Move to OfferController //
-    #[Route('/annonces', name: 'offers_list')]
+    #[Route('/nos-annonces', name: 'offers_list')]
     public function listOffers(OfferRepository $offerRepository): Response
     {
         $offers = $offerRepository->findAllOffers();
-        return $this->render('default/offers_list.html.twig', [
+        return $this->render('offer/offers_list.html.twig', [
             'offers' => $offers,
         ]);
     }

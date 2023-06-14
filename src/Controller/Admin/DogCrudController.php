@@ -31,6 +31,10 @@ class DogCrudController extends AbstractCrudController
             AssociationField::new('breeds')
             ->onlyOnForms()
             ->setFormTypeOptions(['by_reference' => false ]) ,
+            
+            AssociationField::new('offer')
+            ->onlyOnForms()
+            ->setFormTypeOptions(['by_reference' => false ]) ,
 
         ];
     }

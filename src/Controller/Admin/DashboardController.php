@@ -7,6 +7,7 @@ use App\Entity\Breed;
 use App\Entity\Breeder;
 use App\Entity\Department;
 use App\Entity\Dog;
+use App\Entity\Offer;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -48,10 +49,12 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Applications', 'fas fa-book', Application::class);
-        yield MenuItem::linkToCrud('Breeds', 'fas fa-sign', Breed::class);
-        yield MenuItem::linkToCrud('Breeders', 'fa fa-phone', Breeder::class);
-        yield MenuItem::linkToCrud('Departments', 'fa fa-location-dot', Department::class);
-        yield MenuItem::linkToCrud('Dogs', 'fas fa-dog', Dog::class);
+        yield MenuItem::linkToCrud('Offers','fa fa-scroll', Offer::class);
         yield MenuItem::linkToCrud('Users', 'fa fa-circle-user', User::class);
+        yield MenuItem::linkToCrud('Breeders', 'fa fa-phone', Breeder::class);
+        yield MenuItem::linkToCrud('Dogs', 'fas fa-dog', Dog::class);
+        yield MenuItem::linkToCrud('Breeds', 'fas fa-sign', Breed::class);
+        yield MenuItem::linkToCrud('Departments', 'fa fa-location-dot', Department::class);
+
     }
 }

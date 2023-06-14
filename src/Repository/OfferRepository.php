@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -63,10 +64,10 @@ class OfferRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllOffers():array{
+    public function findAllOffers():Query
+    {
         return $this->findOffers()
             ->getQuery()
-            ->getResult()
         ;
     }
 }

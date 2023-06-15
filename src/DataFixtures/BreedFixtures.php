@@ -96,7 +96,7 @@ class BreedFixtures extends Fixture
         ];
         foreach ($breeds as $breed){
             $doggo = (new Breed())
-            ->setName($breed);
+            ->setName(ucfirst($breed));
             $manager->persist($doggo);
         }
     $manager->flush();

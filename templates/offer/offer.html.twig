@@ -9,8 +9,7 @@
 <div class="container">
 {# Title of the offer #}
 <h2>{{ offer.title }}</h2>
-    <div>
-    
+    <div>    
     {# 3 first offer images#}
         {# @TODO #}
         {# Only 3 images #}
@@ -22,19 +21,22 @@
             {# {% for image in dog.images %}
                 <img src="{{asset(image.path)}}" class="d-block w-100" alt="...">
             {% endfor %} #}
-
-    {# description of the offer #}
-    <h3>description</h3>
-    <p>{{ offer.description }}</p>
-
-    {# Location #}
-    <h3>Localisation</h3>
-    <p>{{ offer.location }}</p>
-
-    {# Date #}
-    <h3>Date d'ouverture de l'annonce</h3>
-    <p>{{ offer.dateTime|date("d/m/Y") }}</p>
-</div>
+        <div class="row border">
+            <div class="col-8">
+                {# description of the offer #}
+                <h3>Description</h3>
+                <p>{{ offer.description }}</p>
+            </div>
+            <div class="col-4">
+                {# Location #}
+                <h3>Localisation</h3>
+                <p>{{ offer.location }}</p>
+                {# Date #}
+                <h3>Date d'ouverture de l'annonce</h3>
+                <p>{{ offer.dateTime|date("d/m/Y") }}</p>
+            </div>
+        </div>
+    </div>
 
 {# Dogs list #}
 <h3>Liste des chiens à l'adoption</h3>
@@ -49,7 +51,7 @@
 
             {#  style="min-height: 800px; #}
 
-                <div class="card"">
+                <div class="card d-flex align-items-stretch">
                     {# Start Carousel #}
                     <div id="carousel-{{ dog.id }}" class="carousel slide" data-bs-ride="carousel gap-2">
                         <div class="carousel-indicators">

@@ -3,12 +3,23 @@
 {% block title %}Liste des annonces{% endblock %}
 
 {% block body %}
-<div class="container mb-4">
-<h2 class="mb-2">Nos annonces</h2>
-    {% for offer in offers %}
-        {% include "offer/_offer_card.html.twig" with {offer: offer}  %}
-    {% endfor %}
-</div>
+    <div class="container mb-4">
+        <h2 class="mb-2">Nos annonces</h2>
+        {# Filter Form #}
+        {{ form_start(filterForm) }}
+        <div class="d-flex w-50 mx-auto justify-content-between align-items-center">
+            {{ form_row(filterForm.breed) }}
+            {{ form_row(filterForm.LOF) }}
+            <button type="submit" class="btn btn-light">Filtrer</button>
+        </div>
+        {{ form_end(filterForm) }}
+
+        {# Display offers #}
+            {% for offer in offers %}
+                {% include "offer/_offer_card.html.twig" with {offer: offer}  %}
+            {% endfor %}
+    </div>
+    {# Pagination buttons #}
     {{ knp_pagination_render(offers, null, {}, {
         'align': 'center',
         'size': 'small',

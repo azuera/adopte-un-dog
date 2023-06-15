@@ -14,7 +14,7 @@
     {{ form_row(registrationForm.department) }}
 
 
-     {% if app.request.attributes.get('_route') == 'app_register' %}
+     {% if registrationForm.vars.value.id is same as(null) %}
         <button type="submit" class="btn btn-primary">Register</button>
     {% else %}
 

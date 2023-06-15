@@ -29,6 +29,7 @@ class RegistrationFormType extends AbstractType
             ->add('name',TextType::class,['label'=>'nom'])
             ->add('department', EntityType::class, [
                 'label'=>'departement',
+                'required' => false,
                 'class' => Department::class,
                 'query_builder' => function (DepartmentRepository $er) {
                     return $er->createQueryBuilder('d')->orderBy('d.name', 'ASC');

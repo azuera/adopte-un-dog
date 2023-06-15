@@ -1,5 +1,8 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fbce209 (N1-PHPcsfixer , instalation de PHPstan et de PHPcsfixer)
     "doctrine/annotations": {
         "version": "2.0",
         "recipe": {
@@ -9,8 +12,11 @@
             "ref": "64d8583af5ea57b7afa4aba4b159907f3a148b05"
         }
     },
+<<<<<<< HEAD
 =======
 >>>>>>> db5fd50 (récuperation)
+=======
+>>>>>>> fbce209 (N1-PHPcsfixer , instalation de PHPstan et de PHPcsfixer)
     "doctrine/doctrine-bundle": {
         "version": "2.10",
         "recipe": {
@@ -51,12 +57,18 @@
         ]
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     "easycorp/easyadmin-bundle": {
         "version": "4.6",
+=======
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.17",
+>>>>>>> fbce209 (N1-PHPcsfixer , instalation de PHPstan et de PHPcsfixer)
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "3.0",
+<<<<<<< HEAD
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
@@ -65,6 +77,14 @@
     },
 =======
 >>>>>>> db5fd50 (récuperation)
+=======
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            "./.php-cs-fixer.dist.php"
+        ]
+    },
+>>>>>>> fbce209 (N1-PHPcsfixer , instalation de PHPstan et de PHPcsfixer)
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

@@ -16,8 +16,8 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
 
     public function __construct(OfferRepository $offerRepository, breedRepository $breedRepository)
     {
-        $this -> offerRepository = $offerRepository;
-        $this -> breedRepository = $breedRepository;
+        $this->offerRepository = $offerRepository;
+        $this->breedRepository = $breedRepository;
     }
 
     public function load(ObjectManager $manager)
@@ -26,8 +26,8 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
         $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
         $history = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
         $sociability = 'ok chat';
-        $offers = $this -> offerRepository -> findAll();
-        $breeds = $this -> breedRepository -> findAll();
+        $offers = $this->offerRepository->findAll();
+        $breeds = $this->breedRepository->findAll();
 
         for ($i = 0; $i < 6; $i++) {
             $dog = new Dog();
@@ -40,7 +40,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
             $dog -> addBreed($breeds[mt_rand(0, count($breeds) - 1)]);
             $manager -> persist($dog);
         }
-        $manager -> flush();
+        $manager->flush();
     }
 
     public function getDependencies()

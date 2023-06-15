@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\HasDescrTrait;
 use App\Entity\Traits\HasIdTrait;
 use App\Entity\Traits\HasNameTrait;
-use App\Entity\Traits\HasDescrTrait;
 use App\Repository\DogRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,12 +16,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Dog
 {
     use HasIdTrait;
-
     use HasNameTrait;
-
     use HasDescrTrait;
 
-    #[ORM\Column(options: ["default" => false])]
+    #[ORM\Column(options: ['default' => false])]
     private ?bool $isLOF = false;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -30,7 +28,7 @@ class Dog
     #[ORM\Column(type: Types::TEXT)]
     private ?string $sociability = null;
 
-    #[ORM\Column(options: ["default" => false])]
+    #[ORM\Column(options: ['default' => false])]
     private ?bool $isAdopted = false;
 
     #[ORM\ManyToOne(inversedBy: 'dogs')]
@@ -194,13 +192,11 @@ class Dog
 
         return $this;
     }
-
+    
     public function __toString(): string
     {
         return $this->getName();
-
     }
-
     #[Assert\IsTrue(message: 'Un chien avec plusieurs races ne peut être LOF')]
     public function isLofOK(): bool
     {
@@ -210,5 +206,5 @@ class Dog
 
         return true;
     }
-
 }
+

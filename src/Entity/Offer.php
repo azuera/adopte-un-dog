@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\HasIdTrait;
 use App\Entity\Traits\HasDescrTrait;
 use App\Entity\Traits\HasCreatedTime;
+use App\Entity\Traits\HasIdTrait;
 use App\Repository\OfferRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,6 +19,8 @@ class Offer
     use HasIdTrait;
     use HasDescrTrait;
     use HasCreatedTime;
+    use HasDescrTrait;
+
     use HasDescrTrait;
 
     #[ORM\Column(length: 255)]
@@ -157,7 +159,6 @@ class Offer
 
         return $this;
     }
-
     public function getBreeds(): array
     {
         $breeds = [];

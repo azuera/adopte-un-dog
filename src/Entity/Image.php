@@ -43,9 +43,9 @@ class Image
     public function setDog(?Dog $dog): self
     {
         $this->dog = $dog;
-
         return $this;
     }
+
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
     #[Vich\UploadableField(mapping: 'dogs_images', fileNameProperty: 'path')]
     private ?File $imageFile = null;
@@ -60,9 +60,9 @@ class Image
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
-
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 }
+

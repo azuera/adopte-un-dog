@@ -24,6 +24,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use HasIdTrait;
 
+    use HasNameTrait;
+
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Email]
     #[Assert\NotBlank()]
@@ -38,8 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     protected ?string $password = null;
     private ?string $PlainPassword = null;
-
-    use HasNameTrait;
 
     #[ORM\Column(length: 128, nullable: true)]
     #[Assert\NotBlank(groups : ['application'])]
@@ -191,7 +191,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
 	/**
 	 * @return 
 	 */

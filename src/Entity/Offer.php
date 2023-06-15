@@ -184,4 +184,14 @@ class Offer
 
         return $this;
     }
+    public function getImages(): array
+    {
+        $images = [];
+        foreach ($this->getDogs() as $dog) {
+            foreach ($dog->getImages() as $image) {
+                $images[] = $image;
+            }
+        }
+        return $images;
+    }
 }

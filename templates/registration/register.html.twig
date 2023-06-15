@@ -14,6 +14,11 @@
     {{ form_row(registrationForm.department) }}
 
 
-    <button type="submit" class="btn btn-primary">Register</button>
+     {% if app.request.attributes.get('_route') == 'app_register' %}
+        <button type="submit" class="btn btn-primary">Register</button>
+    {% else %}
+
+        <button type="submit" class="btn btn-primary">modifier</button>
+    {% endif %}
     {{ form_end(registrationForm) }}
 {% endblock %}

@@ -15,9 +15,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    #[Route('/register/{id}', name: 'app_register_edit', requirements:['id'=>'\d+'])]
+    public function register(Request $request,
+                             UserPasswordHasherInterface $userPasswordHasher,
+                             EntityManagerInterface $entityManager,
+                            ?user $user = null
+    ): Response
     {
-        $user = new User();
+        if(is_null($user)){
+            $user = new User();
+        }
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 

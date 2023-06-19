@@ -9,24 +9,6 @@
     <div
         class="container">
 
-        {# Start block isClosed #}
-        <div
-            class="mb-4 d-flex">
-            {# isClosed #}
-            {% if not offer.isClosed %}
-                {# @TODO (modifier path avec la page réponse) #}
-                <a href="{{ path('app_default') }}">
-                    <button type="button" class="btn btn-success">
-                        Répondre à l'annonce
-                    </button>
-                </a>
-            {% else %}
-                <span class="badge bg-danger">
-                    L'annonce est fermée
-                </span>
-            {% endif %}
-        </div>
-        {# Start block isClosed #}
         {# Title of the offer #}
         <h2>
             {{ offer.title }}
@@ -36,26 +18,44 @@
             <div
                 class="col-8">
                 {# description of the offer #}
-                <h3>
+                <h4>
                     Description
-                </h3>
+                </h4>
                 <p>
                     {{ offer.description }}
                 </p>
                 {# Location #}
-                <h3>
+                <h4>
                     Localisation
-                </h3>
+                </h4>
                 <p>
                     {{ offer.location }}
                 </p>
                 {# Date #}
-                <h3>
-                    Date d'ouverture de l'annonce
-                </h3>
+                <h4>
+                    Date de mise à jour
+                </h4>
                 <p>
                     {{ offer.dateTime|date("d/m/Y") }}
                 </p>
+                {# Start block isClosed #}
+                <div
+                    class="mb-4 d-flex">
+                    {# isClosed #}
+                    {% if not offer.isClosed %}
+                        {# @TODO (modifier path avec la page réponse) #}
+                        <a href="{{ path('app_default') }}">
+                            <button type="button" class="btn btn-success">
+                                Répondre à l'annonce
+                            </button>
+                        </a>
+                    {% else %}
+                        <span class="badge bg-danger">
+                            L'annonce est fermée
+                        </span>
+                    {% endif %}
+                </div>
+                {# Start block isClosed #}
             </div>
             {# Start Carousel #}
             <div id="carousel-annonce" class="carousel slide col-4 p-0" data-bs-ride="carousel">

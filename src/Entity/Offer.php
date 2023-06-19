@@ -18,6 +18,7 @@ class Offer
     use HasIdTrait;
     use HasDescrTrait;
     use HasCreatedTime;
+    use HasDescrTrait;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -25,13 +26,7 @@ class Offer
     #[ORM\Column(length: 255)]
     private ?string $location = null;
 
-    use HasDescrTrait;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateTime = null;
-
     #[ORM\Column(options: ["default" => false])]
-
     private ?bool $isClosed = false;
 
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Application::class, orphanRemoval: true)]

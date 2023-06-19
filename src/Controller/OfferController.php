@@ -15,7 +15,7 @@ use App\Repository\OfferRepository;
 
 class OfferController extends AbstractController
 {
-    #[Route('/offer/{id}', name: 'offer_show', requirements: ['id' => '\d+'])]
+    #[Route('/annonce/{id}', name: 'offer_show', requirements: ['id' => '\d+'])]
     public function showOffer(OfferRepository $offerRepository, int $id): Response
     {
         $offer = $offerRepository->find($id);

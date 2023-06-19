@@ -4,18 +4,35 @@
     {{offer.title}}
 {% endblock %}
 
-
 {% block body %}
-
     {# Start Container for dogs card #}
     <div
         class="container">
+
+        {# Start block isClosed #}
+        <div
+            class="mb-4 d-flex">
+            {# isClosed #}
+            {% if not offer.isClosed %}
+                {# @TODO (modifier path avec la page réponse) #}
+                <a href="{{ path('app_default') }}">
+                    <button type="button" class="btn btn-success">
+                        Répondre à l'annonce
+                    </button>
+                </a>
+            {% else %}
+                <span class="badge bg-danger">
+                    L'annonce est fermée
+                </span>
+            {% endif %}
+        </div>
+        {# Start block isClosed #}
         {# Title of the offer #}
         <h2>
             {{ offer.title }}
         </h2>
         {# Start head of the offer #}
-        <div class="row border rounded">
+        <div class="row border rounded bg-light p-2 my-2">
             <div
                 class="col-8">
                 {# description of the offer #}
@@ -78,7 +95,7 @@
         {# End head of the offer #}
 
         {# Dogs list #}
-        <h3>
+        <h3 class="m-0">
             Liste des chiens à l'adoption
         </h3>
         {# Start Container for dogs card #}
@@ -193,24 +210,6 @@
             {# End Row Dogs cards #}
         </div>
         {# End flex-wrap Dogs cards #}
-        {# Start block isClosed #}
-        <div
-            class="my-2 d-flex justify-content-end">
-            {# isClosed #}
-            {% if not offer.isClosed %}
-                {# @TODO (modifier path avec la page réponse) #}
-                <a href="{{ path('app_default') }}">
-                    <button type="button" class="btn btn-success">
-                        Répondre à l'annonce
-                    </button>
-                </a>
-            {% else %}
-                <span class="badge bg-danger">
-                    L'annonce est fermée
-                </span>
-            {% endif %}
-        </div>
-        {# Start block isClosed #}
     </div>
     {# End Container for dogs card #}
 {% endblock %}

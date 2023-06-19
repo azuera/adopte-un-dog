@@ -23,7 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use HasIdTrait;
-
     use HasNameTrait;
 
     #[ORM\Column(length: 180, unique: true)]

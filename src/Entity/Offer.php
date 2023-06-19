@@ -19,9 +19,6 @@ class Offer
     use HasIdTrait;
     use HasDescrTrait;
     use HasCreatedTime;
-    use HasDescrTrait;
-
-    use HasDescrTrait;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;

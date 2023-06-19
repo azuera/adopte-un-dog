@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div>
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.email }}</p>
+        <p>{{ user.location }}</p>
+        <p>{{ user.phone }}</p>
+        <p><a class="btn btn-primary" href="{{ path('app_register_edit',{id:app.user.id}) }}">modifier</a></p>
+    </div>
+    <div>
+        <h3>Mes Annonces</h3>
+
+    </div>
+
+{% endblock %}

@@ -66,3 +66,14 @@ footer img {
     height : 180px;
     aspect-ratio: 1/1;
 }
+/*
+page generals
+*/
+
+/*
+page Offer
+*/
+.offerImg {
+    width: 100px;
+    height: 100px;
+}

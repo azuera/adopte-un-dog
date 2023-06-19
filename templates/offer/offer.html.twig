@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Offre numéro :
-    {{offer.id}}
+    {{offer.title}}
 {% endblock %}
 
 
@@ -139,8 +138,8 @@
                                     </h3>
                                     {# isLOF #}
                                     {% if dog.isLOF %}
-                                        <span class="badge bg-info">
-                                            Chien LOF
+                                        <span class="badge text-bg-info">
+                                            LOF
                                         </span>
                                     {% endif %}
                                 </div>

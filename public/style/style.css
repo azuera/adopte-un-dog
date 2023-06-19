@@ -76,4 +76,9 @@ page Offer
 .offerImg {
     width: 100px;
     height: 100px;
+
+}
+
+.offerImg .image-card{
+    object-position: center;
 }

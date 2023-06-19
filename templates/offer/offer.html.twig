@@ -87,7 +87,7 @@
             class="container-fluid">
             {# Start flex-wrap Dogs cards #}
             <div
-                class="d-flex flex-wrap justify-content-center">
+                class="d-flex row">
                 {# Start Dogs cards #}
                 {% for dog in offer.dogs %}
                     {# Start Dog card #}
@@ -107,7 +107,7 @@
                                     class="carousel-inner rounded" style="height: 350px;">
                                     {# Images #}
                                     {% for image in dog.images %}
-                                        <div class="carousel-item{% if loop.first %} active{% endif %}">
+                                        <div class="image-card carousel-item{% if loop.first %} active{% endif %}">
                                             <img src="{{asset(image.path)}}" class="d-block w-100" alt="...">
                                         </div>
                                     {% endfor %}

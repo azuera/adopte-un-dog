@@ -42,6 +42,16 @@ h2 {
     font-size: 28px;
 }
 
+h3 {
+    font-family: 'Playfair Display';
+    font-size: 22px;
+}
+
+h4 {
+    font-family: 'Lato';
+    font-size: 22px;
+}
+
 header p {
     font-family: 'Lato';
     font-size: 24px;
@@ -52,7 +62,7 @@ header h1 , header p {
     line-height: 100%;
 }
 
-footer{
+footer {
     margin-bottom: 0px;
     margin-top : 50px;
     /* height : 200px; */
@@ -65,4 +75,20 @@ footer{
 footer img {
     height : 180px;
     aspect-ratio: 1/1;
+}
+/*
+page generals
+*/
+
+/*
+page Offer
+*/
+.offerImg {
+    width: 100px;
+    height: 100px;
+
+}
+
+.offerImg .image-card{
+    object-position: center;
 }

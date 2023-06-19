@@ -36,7 +36,7 @@ class DefaultController extends AbstractController
         PaginatorInterface $paginator): Response
     {
         $filter = new Filter();
-        $form = $this->createForm(FilterFormType::class, $filter);
+        $form = $this->createForm(FilterFormType::class, $filter,['method' => 'GET',]);
         $form->handleRequest($request);
 
         $offers = $offerRepository->findAllOffers($filter);

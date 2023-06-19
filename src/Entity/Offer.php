@@ -194,7 +194,7 @@ class Offer
     {
         $isDogLof = false;
         foreach ( $this->dogs as $dog ){
-            if ($dog->isIsLof() == true){
+            if ( $dog->isIsLof() == true ){
                 $isDogLof = true;
             }
         }

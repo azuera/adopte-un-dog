@@ -37,6 +37,7 @@ class FilterFormType extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
+            'data_class' => Filter::class,
         ]);
     }
 }

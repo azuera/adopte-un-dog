@@ -69,8 +69,8 @@ class OfferRepository extends ServiceEntityRepository
     {
         $filteredQuery = $this->findOffers();
     if ( !empty($filter->getBreed()) ){
-        $filteredQuery->andWhere('b.name = :name')
-        ->setParameter('name', $filter->getBreed());
+        $filteredQuery->andWhere('b.id = :id')
+        ->setParameter('id', $filter->getBreed()->getId());
     }
     if (!empty($filter->getLof())){
         $filteredQuery->andWhere('d.isLOF = true');

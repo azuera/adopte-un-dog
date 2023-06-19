@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Form;
+use App\Entity\Breed;
 
 class Filter {
-    protected ?string $breed = null ;
+    protected ?Breed $breed = null;
     protected ?bool $lof = false;
-
 
 	/**
 	 * @return 
 	 */
-	public function getBreed(): ?string {
+	public function getBreed(): ?Breed {
 		return $this->breed;
 	}
 	
@@ -18,7 +18,7 @@ class Filter {
 	 * @param  $breed 
 	 * @return self
 	 */
-	public function setBreed(?string $breed): self {
+	public function setBreed(?Breed $breed): self {
 		$this->breed = $breed;
 		return $this;
 	}

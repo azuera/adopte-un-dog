@@ -47,10 +47,6 @@
             "./migrations/.gitignore"
         ]
     },
-<<<<<<< HEAD
-    "knplabs/knp-paginator-bundle": {
-        "version": "v6.2.0"
-=======
     "easycorp/easyadmin-bundle": {
         "version": "4.6",
         "recipe": {
@@ -59,7 +55,9 @@
             "version": "3.0",
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
->>>>>>> 81d9505 (Ajout des CRUD)
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.2.0"
     },
     "phpunit/phpunit": {
         "version": "9.6",

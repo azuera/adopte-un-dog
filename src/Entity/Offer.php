@@ -189,4 +189,16 @@ class Offer
         }
         return $images;
     }
+
+    public function hasLOFDog():bool
+    {
+        $isDogLof = false;
+        foreach ( $this->dogs as $dog ){
+            if ( $dog->isIsLof() == true ){
+                $isDogLof = true;
+            }
+        }
+        return $isDogLof;
+    }
+
 }

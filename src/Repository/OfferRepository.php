@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Offer;
+use App\Form\Filter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -61,5 +63,18 @@ class OfferRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findAllOffers(Filter $filter):Query
+    {
+        $filteredQuery = $this->findOffers();
+    if ( !empty($filter->getBreed()) ){
+        $filteredQuery->andWhere('b.id = :id')
+        ->setParameter('id', $filter->getBreed()->getId());
+    }
+    if (!empty($filter->getLof())){
+        $filteredQuery->andWhere('d.isLOF = true');
+    }
+        return $filteredQuery->getQuery();
     }
 }

@@ -16,10 +16,10 @@ class DefaultController extends AbstractController
     {
         $offers = $offerRepository->findForHome();
         $breeders = $breederRepository->findForHome();
-        // dd($breeders);
         return $this->render('default/index.html.twig', [
             'offers' => $offers,
             'breeders' => $breeders,
         ]);
     }
-}
+
+} 

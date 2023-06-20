@@ -58,12 +58,13 @@ class OfferController extends AbstractController
         ?Offer $offer = null): Response
     {
         $user = $this->getUser();
-        $date = new \DateTime();
+        // $date = new \DateTime();
 
         if(is_null($offer)){
             $offer = (new Offer())
             ->setBreeder($user)
-            ->setDateTime($date);
+            // ->setDateTime($date)
+            ;
         } elseif ($offer->getBreeder() != $user){
             throw $this->createAccessDeniedException('NOPE');
         }
@@ -72,7 +73,7 @@ class OfferController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $offer->setUpdatedTime($date);
+            // $offer->setUpdatedTime($date);
             $entityManager->persist($offer);
             $entityManager->flush();
             if($offer->isIsClosed()){

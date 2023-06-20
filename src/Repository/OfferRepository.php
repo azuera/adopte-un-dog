@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Offer;
+use App\Entity\User;
 use App\Form\Filter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -42,39 +43,49 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findOffers():QueryBuilder
+    public function findForBreeders(User $user): array
+    {
+
+        return $this->findOffers()
+            ->andWhere('o.breeder = :id ')
+            ->setParameter('id', $user->getId())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findOffers(): QueryBuilder
     {
         return $this->createQueryBuilder('o')
-        ->select([
-            'o',
-        ])
+            ->select([
+                'o',
+            ])
             ->leftJoin('o.dogs', 'd')
             ->leftJoin('d.breeds', 'b')
             ->leftJoin('d.images', 'i')
             ->andWhere('o.isClosed = false')
             ->groupBy('o.id')
-            ->orderBy('o.updatedTime', 'DESC')
-            ;
+            ->orderBy('o.updatedTime', 'DESC');
     }
-    public function findForHome():array
+
+    public function findForHome(): array
     {
         return $this->findOffers()
             ->setMaxResults(5)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
-    public function findAllOffers(Filter $filter):Query
+    public function findAllOffers(Filter $filter): Query
     {
         $filteredQuery = $this->findOffers();
-    if ( !empty($filter->getBreed()) ){
-        $filteredQuery->andWhere('b.id = :id')
-        ->setParameter('id', $filter->getBreed()->getId());
-    }
-    if (!empty($filter->getLof())){
-        $filteredQuery->andWhere('d.isLOF = true');
-    }
+        if (!empty($filter->getBreed())) {
+            $filteredQuery->andWhere('b.id = :id')
+                ->setParameter('id', $filter->getBreed()->getId());
+        }
+        if (!empty($filter->getLof())) {
+            $filteredQuery->andWhere('d.isLOF = true');
+        }
         return $filteredQuery->getQuery();
     }
 }

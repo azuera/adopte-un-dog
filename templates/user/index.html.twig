@@ -12,7 +12,29 @@
     </div>
     <div>
         <h3>Mes Annonces</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+                <th scope="col">bouton</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for offer in offers %}
+            <tr>
+                <th scope="row">{{ offer.id }}</th>
+                <td>{{ offer.title }}</td>
+                <td>{{ offer.description }}</td>
+                <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
+                <td><a class="btn btn-primary" href="{{ path('app_default') }}">voir l'annonce</a></td>
+            </tr>
+            {% endfor %}
 
+            </tbody>
+        </table>
     </div>
 
 {% endblock %}

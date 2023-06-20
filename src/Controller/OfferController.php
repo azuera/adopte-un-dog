@@ -51,9 +51,7 @@ class OfferController extends AbstractController
 
     #[Route("/nouvelle-offre", name: "offer_new")]
     #[Route("/modifier-offre/{id}", name: "offer_change", requirements: ['id' => '\d+'])]
-    #[IsGranted('ROLE_USER')]
-    //@TODO : Restrict to Breeder only
-    // #[IsGranted('ROLE_BREEDER')]
+    #[IsGranted('ROLE_BREEDER')]
     public function manageOffer(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -61,10 +59,13 @@ class OfferController extends AbstractController
     {
         $user = $this->getUser();
         $date = new \DateTime();
+
         if(is_null($offer)){
             $offer = (new Offer())
             ->setBreeder($user)
             ->setDateTime($date);
+        } elseif ($offer->getBreeder() != $user){
+            throw $this->createAccessDeniedException('NOPE');
         }
 
         $form = $this->createForm(OfferFormType::class, $offer);
@@ -74,7 +75,11 @@ class OfferController extends AbstractController
             $offer->setUpdatedTime($date);
             $entityManager->persist($offer);
             $entityManager->flush();
-            $this->addFlash('success', 'Annonce postée');
+            if($offer->isIsClosed()){
+                $this->addFlash('danger', 'Annonce fermée');
+            }else{
+                $this->addFlash('sucess', 'Annonce postée');
+            }
             return $this->redirectToRoute('app_default');
         }
 

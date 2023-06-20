@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
 
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -11,7 +11,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ path('app_default') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Liste des annonces</a>
+                    <a class="nav-link" href="{{ path('offers_list') }}">Liste des annonces</a>
                 </li>
                 {% if not is_granted('ROLE_USER') %}
                     <li class="nav-item">

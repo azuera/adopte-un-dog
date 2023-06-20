@@ -6,68 +6,41 @@
 
 {% block body %}
     {# Start Container for dogs card #}
-    <div
-        class="container">
+    <div class="container">
 
         {# Title of the offer #}
-        <h2>
-            {{ offer.title }}
-        </h2>
+        <h2>{{ offer.title }}</h2>
         {# Start head of the offer #}
         <div class="row border rounded bg-light p-2 my-2">
-            <div
-                class="col-8">
+            <div class="col-8">
                 {# description of the offer #}
-                <h4>
-                    Description
-                </h4>
-                <p>
-                    {{ offer.description }}
-                </p>
+                <h4>Description</h4>
+                <p>{{ offer.description }}</p>
                 {# Location #}
-                <h4>
-                    Localisation
-                </h4>
-                <p>
-                    {{ offer.location }}
-                </p>
+                <h4>Localisation</h4>
+                <p>{{ offer.location }}</p>
                 {# Date #}
-                <h4>
-                    Date de mise à jour
-                </h4>
-                <p>
-                    {{ offer.dateTime|date("d/m/Y") }}
-                </p>
+                <h4>Date de mise à jour</h4>
+                <p>{{ offer.dateTime|date("d/m/Y") }}</p>
                 {# Start block isClosed #}
-                <div
-                    class="mb-4 d-flex">
-                    {# isClosed #}
+                <div class="mb-4 d-flex">
                     {% if not offer.isClosed %}
                         {# @TODO (modifier path avec la page réponse) #}
-                        <a href="{{ path('app_default') }}">
-                            <button type="button" class="btn btn-success">
-                                Répondre à l'annonce
-                            </button>
-                        </a>
+                        <a href="{{ path('app_default') }}" class="btn btn-success">Répondre à l'annonce</a>
                     {% else %}
-                        <span class="badge bg-danger">
-                            L'annonce est fermée
-                        </span>
+                        <span class="badge bg-danger">L'annonce est fermée</span>
                     {% endif %}
                 </div>
-                {# Start block isClosed #}
             </div>
             {# Start Carousel #}
             <div id="carousel-annonce" class="carousel slide col-4 p-0" data-bs-ride="carousel">
-                <div
-                    class="carousel-indicators">
+                <div class="carousel-indicators">
                     {# Btn for select the image #}
                     {% for image in offer.images %}
                         <button type="button" data-bs-target="#carousel-annonce" data-bs-slide-to="{{ loop.index0 }}" aria-label="Slide {{ loop.index }}" {% if loop.first %} class="active" aria-current="true" {% endif %}></button>
                     {% endfor %}
                 </div>
-                <div
-                    class="carousel-inner rounded" style="height: 350px;">
+                <div class="carousel-inner rounded" style="height: 350px;">
                     {# Images #}
                     {% for image in offer.images %}
                         <div class="carousel-item{% if loop.first %} active{% endif %}">
@@ -78,16 +51,12 @@
                 {# Btn left #}
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-annonce" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">
-                        Previous
-                    </span>
+                    <span class="visually-hidden">Previous</span>
                 </button>
                 {# Btn right #}
                 <button class="carousel-control-next" type="button" data-bs-target="#carousel-annonce" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">
-                        Next
-                    </span>
+                    <span class="visually-hidden">Next</span>
                 </button>
             </div>
             {# End Carousel #}
@@ -95,32 +64,25 @@
         {# End head of the offer #}
 
         {# Dogs list #}
-        <h3 class="m-0">
-            Liste des chiens à l'adoption
-        </h3>
+        <h3 class="m-0">Liste des chiens à l'adoption</h3>
         {# Start Container for dogs card #}
-        <div
-            class="container-fluid">
+        <div class="container-fluid">
             {# Start flex-wrap Dogs cards #}
-            <div
-                class="d-flex row">
+            <div class="d-flex row">
                 {# Start Dogs cards #}
                 {% for dog in offer.dogs %}
                     {# Start Dog card #}
                     <div class="p-2 col-4">
-                        <div
-                            class="card">
+                        <div class="card">
                             {# Start Carousel #}
                             <div id="carousel-{{ dog.id }}" class="carousel slide" data-bs-ride="carousel">
-                                <div
-                                    class="carousel-indicators">
+                                <div class="carousel-indicators">
                                     {# Btn for select the image #}
                                     {% for image in dog.images %}
                                         <button type="button" data-bs-target="#carousel-{{ dog.id }}" data-bs-slide-to="{{ loop.index0 }}" aria-label="Slide {{ loop.index }}" {% if loop.first %} class="active" aria-current="true" {% endif %}></button>
                                     {% endfor %}
                                 </div>
-                                <div
-                                    class="carousel-inner rounded" style="height: 350px;">
+                                <div class="carousel-inner rounded" style="height: 350px;">
                                     {# Images #}
                                     {% for image in dog.images %}
                                         <div class="image-card carousel-item{% if loop.first %} active{% endif %}">
@@ -131,73 +93,48 @@
                                 {# Btn left #}
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ dog.id }}" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">
-                                        Previous
-                                    </span>
+                                    <span class="visually-hidden">Previous</span>
                                 </button>
                                 {# Btn right #}
                                 <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ dog.id }}" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">
-                                        Next
-                                    </span>
+                                    <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
                             {# End Carousel #}
 
                             {# Start card body #}
                             <div class="card-body">
-                                <div
-                                    class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
                                     {# Name #}
-                                    <h3 class="card-title">
-                                        {{ dog.name }}
-                                    </h3>
+                                    <h3 class="card-title">{{ dog.name }}</h3>
                                     {# isLOF #}
                                     {% if dog.isLOF %}
-                                        <span class="badge text-bg-info">
-                                            LOF
-                                        </span>
+                                        <span class="badge text-bg-info">LOF</span>
                                     {% endif %}
                                 </div>
                                 {# Breeds #}
                                 <p class="card-text">
                                     {% for breed in dog.breeds %}
-                                        <span class="p-2 rounded text-bg-light">
-                                            {{ breed.name }}
-                                        </span>
+                                        <span class="p-2 rounded text-bg-light">{{ breed.name }}</span>
                                     {% endfor %}
                                 </p>
                                 {# description #}
-                                <h5>
-                                    Description :
-                                </h5>
-                                <p class="card-text">
-                                    {{ dog.description }}
-                                </p>
+                                <h5>Description :</h5>
+                                <p class="card-text">{{ dog.description }}</p>
                                 {# History #}
-                                <h5>
-                                    Antécédents :
-                                </h5>
-                                <p class="card-text">
-                                    {{ dog.history }}
-                                </p>
+                                <h5>Antécédents :</h5>
+                                <p class="card-text">{{ dog.history }}</p>
                                 {# Sociability #}
-                                <h5>
-                                    Sociabilité :
-                                </h5>
+                                <h5>Sociabilité :</h5>
                                 <p class="card-text">
                                     {{ dog.sociability }}
                                 </p>
                                 {# isAdopted #}
                                 {% if not dog.isAdopted %}
-                                    <p class="badge bg-success">
-                                        Chien disponible
-                                    </p>
+                                    <p class="badge bg-success">Chien disponible</p>
                                 {% else %}
-                                    <p class="badge bg-danger">
-                                        Chien indisponible
-                                    </p>
+                                    <p class="badge bg-danger">Chien indisponible</p>
                                 {% endif %}
                             </div>
                             {# End card body #}

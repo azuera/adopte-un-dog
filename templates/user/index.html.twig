@@ -19,6 +19,7 @@
                 <th scope="col">First</th>
                 <th scope="col">Last</th>
                 <th scope="col">Handle</th>
+                <th scope="col">Handle</th>
                 <th scope="col">bouton</th>
             </tr>
             </thead>
@@ -29,6 +30,7 @@
                 <td>{{ offer.title }}</td>
                 <td>{{ offer.description }}</td>
                 <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
+                <td>{{ offer.getLastMessageDate()|date("d/m/y H:i") }}</td>
                 <td><a class="btn btn-primary" href="{{ path('app_default') }}">voir l'annonce</a></td>
             </tr>
             {% endfor %}

@@ -8,13 +8,16 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
 {
-    #[Route('/user/{id}', name: 'app_user', requirements: ['id' => '\d+'])]
-    public function showUser(UserRepository $userRepository, OfferRepository $offerRepository, int $id, User $user): Response
+    #[Route('/user', name: 'app_user')]
+    #[IsGranted('ROLE_USER')]
+    public function showUser( OfferRepository $offerRepository): Response
     {
-        $users = $userRepository->find($id);
+        /** @var User $user */
+        $user = $this->getUser();
         $offers = $offerRepository->findForBreeders($user);
 //        dd($offers);
 
@@ -22,7 +25,7 @@ class UserController extends AbstractController
 
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',
-            'user' => $users,
+            'user' => $user,
             'offers' => $offers,
         ]);
     }

@@ -6,6 +6,7 @@ use App\Entity\Traits\HasIdTrait;
 use App\Entity\Traits\HasDescrTrait;
 use App\Entity\Traits\HasCreatedTime;
 use App\Repository\OfferRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -41,7 +42,7 @@ class Offer
 
     #[ORM\Column(name: 'updated_time', type: Types::DATETIME_MUTABLE)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?\DateTimeInterface $updatedTime = null;
+    private ?DateTimeInterface $updatedTime = null;
 
     public function __construct()
     {
@@ -168,12 +169,12 @@ class Offer
         return $breeds;
     }
 
-    public function getUpdatedTime(): ?\DateTimeInterface
+    public function getUpdatedTime(): ?DateTimeInterface
     {
         return $this->updatedTime;
     }
 
-    public function setUpdatedTime(\DateTimeInterface $updatedTime): self
+    public function setUpdatedTime(DateTimeInterface $updatedTime): self
     {
         $this->updatedTime = $updatedTime;
 
@@ -204,6 +205,17 @@ class Offer
     public function __toString(): string
     {
         return $this->getTitle();
+    }
+    public function getLastMessageDate(): ?DateTimeInterface{
+        $date = null;
+        foreach ($this->getApplications() as $application){
+            foreach ($application->getMessages() as $message){
+               if($message->getDateTime() > $date){
+                   $date=$message->getDateTime();
+               }
+            }
+        }
+        return $date;
     }
 
 }

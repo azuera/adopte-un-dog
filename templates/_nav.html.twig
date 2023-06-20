@@ -25,10 +25,10 @@
                 {% endif %}
                 {% if  is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_user', {id:app.user.id}) }}">Mon compte</a>
+                        <a class="nav-link" href="{{ path('app_user') }}">Mon compte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                        <a class="nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
                     </li>
                 {% endif %}
                 {% if  is_granted('ROLE_ADMIN') %}

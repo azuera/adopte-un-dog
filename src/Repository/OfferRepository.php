@@ -47,8 +47,13 @@ class OfferRepository extends ServiceEntityRepository
     {
 
         return $this->findOffers()
+            ->leftJoin('o.applications','a')
+            ->leftJoin('a.messages','m')
             ->andWhere('o.breeder = :id ')
             ->setParameter('id', $user->getId())
+            ->orderBy('m.isSentByAdopter', 'DESC')
+            ->addOrderBy('m.dateTime', 'DESC')
+            ->addOrderBy('o.updatedTime', 'DESC')
             ->getQuery()
             ->getResult()
             ;

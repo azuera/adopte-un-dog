@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Image;
+use App\Entity\Dog;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -23,7 +23,11 @@ class DogsImagesType extends AbstractType
                     'asset_helper' => true,
                 ]
             )
-            ->add('dog', EntityType::class, ['label' => 'Chien', 'required' => true])
+            ->add('dog', EntityType::class, [
+                'class' => Dog::class,
+                'label' => 'Chien',
+                'required' => true
+            ])
         ;
     }
 

@@ -206,7 +206,8 @@ class Offer
     {
         return $this->getTitle();
     }
-    public function getLastMessageDate(): ?DateTimeInterface{
+    public function getLastMessageDate(): ?DateTimeInterface
+    {
         $date = null;
         foreach ($this->getApplications() as $application){
             foreach ($application->getMessages() as $message){
@@ -217,5 +218,6 @@ class Offer
         }
         return $date;
     }
+
 
 }

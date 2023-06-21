@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Application;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+
 
 /**
  * @extends ServiceEntityRepository<Application>
@@ -37,6 +40,19 @@ class ApplicationRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findUserApplications(User $user): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select([
+                'a',
+            ])
+            ->leftJoin('a.messages','m')
+            ->andWhere(' a.user = :id ')
+            ->setParameter('id', $user->getId())
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

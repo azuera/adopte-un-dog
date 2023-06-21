@@ -10,33 +10,59 @@
         <p>{{ user.phone }}</p>
         <p><a class="btn btn-primary" href="{{ path('app_register_edit',{id:app.user.id}) }}">modifier</a></p>
     </div>
-    <div>
-        <h3>Mes Annonces</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Handle</th>
-                <th scope="col">bouton</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for offer in offers %}
-            <tr>
-                <th scope="row">{{ offer.id }}</th>
-                <td>{{ offer.title }}</td>
-                <td>{{ offer.description }}</td>
-                <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
-                <td>{{ offer.getLastMessageDate()|date("d/m/y H:i") }}</td>
-                <td><a class="btn btn-primary" href="{{ path('app_default') }}">voir l'annonce</a></td>
-            </tr>
-            {% endfor %}
+    {% if  is_granted('ROLE_BREEDER') %}
+        <div>
+            <h3>Mes Annonces</h3>
+            <table class="table">
+                <thead>
+                <tr class="">
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Mise à jour</th>
+                    <th scope="col" class="text-center">Dernier message</th>
+                    <th scope="col" class="text-center">🔎</th>
+                    <th scope="col" class="text-center">📝</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for offer in offers %}
+                    <tr>
+                        <td>{{ offer.title }}</td>
+                        <td>{{ offer.description }}</td>
+                        <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
+                        <td>{{ offer.getLastMessageDate()|date("d/m/y H:i") }}</td>
+                        <td><a class="btn btn-primary" href="{{ path('app_offer',{id:offer.id}) }}">voir l'annonce </a></td>
+                        <td><a class="btn btn-warning" href="{{ path('app_default') }}">modifier votre annonce </a></td>
+                    </tr>
+                {% endfor %}
 
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    {% if  is_granted('ROLE_USER') and not is_granted('ROLE_BREEDER') %}
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Titre de mon offre</th>
+                    <th scope="col">createur de la disscution</th>
+                    <th scope="col">Nombres de message</th>
+                    <th scope="col" class="text-center">🔎</th>
 
+                </tr>
+                </thead>
+                <tbody>
+                {% for application in applications %}
+                    <tr>
+                        <td>{{application.offer.title }}</td>
+                        <td>{{ application.user.name}}</td>
+                        <td>{{ application.messages|length }}</td>
+                        <td><a class="btn btn-primary" href="{{ path('app_offer',{id:application.offer.id}) }}">voir l'annonce </a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 {% endblock %}

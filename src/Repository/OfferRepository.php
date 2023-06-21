@@ -93,4 +93,5 @@ class OfferRepository extends ServiceEntityRepository
         }
         return $filteredQuery->getQuery();
     }
+
 }

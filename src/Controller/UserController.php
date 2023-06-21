@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,12 +14,13 @@ class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
     #[IsGranted('ROLE_USER')]
-    public function showUser( OfferRepository $offerRepository): Response
+    public function showUser( OfferRepository $offerRepository ,ApplicationRepository $applicationRepository): Response
     {
         /** @var User $user */
         $user = $this->getUser();
         $offers = $offerRepository->findForBreeders($user);
-//        dd($offers);
+        $applications = $applicationRepository->findUserApplications($user);
+//        dd($applications);
 
 
 
@@ -27,6 +28,7 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
             'user' => $user,
             'offers' => $offers,
+            'applications' => $applications,
         ]);
     }
 }

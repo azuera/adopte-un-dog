@@ -17,27 +17,24 @@ class OfferCrudController extends AbstractCrudController
         return Offer::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id') ->hideOnForm(),
+            IdField::new('id')->hideOnForm(),
             TextField::new('title'),
             TextField::new('description'),
             TextField::new('location'),
             DateTimeField::new('dateTime'),
             BooleanField::new('isClosed'),
-
             AssociationField::new('breeder')
-            ->onlyOnForms()
-            ->setFormTypeOptions(['by_reference'=>false]),
-            
+                ->onlyOnForms(),
             AssociationField::new('dogs')
-            ->onlyOnForms()
-            ->setFormTypeOptions(['by_reference'=>false]),
+                ->onlyOnForms()
+                ->setFormTypeOptions(['by_reference' => false]),
 
-            
+
         ];
     }
-    
+
 }

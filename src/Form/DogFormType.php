@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,7 +22,7 @@ class DogFormType extends AbstractType
             ->add('isAdopted', CheckboxType::class, ['label' => 'Adopté', 'required' => false,])
             ->add('history', TextareaType::class, ['label' => 'Historique','required' => true,])
             ->add('sociability', TextareaType::class, ['label' => 'Sociabilité','required' => true,])
-            ->add('name', TextareaType::class, ['label' => 'Nom','required' => true,])
+            ->add('name', TextType::class, ['label' => 'Nom','required' => true,])
             ->add('description', TextareaType::class, ['label' => 'Description','required' => true,])
             ->add('breeds', EntityType::class, [
                 'label' => 'Race',

@@ -26,8 +26,7 @@ class BreederCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('phone'),
             AssociationField::new('department')
-                ->onlyOnForms()
-                ->setFormTypeOptions(['by_reference' => false]),
+                ->onlyOnForms(),
                 BooleanField::new('is_admin'),
 
         ];

@@ -6,16 +6,16 @@
 
 {% block body %}
 
-    <div class="container">
-    <h2>Ajouter un dog</h2>
-	{{ form_start(form) }}
-	{{form_row(form.name)}}
-	{{form_row(form.breeds , {attr:{class:'tom-select'}})}}
-	{{form_rest(form)}}
+	<div class="container">
+		<h2>Ajouter un dog</h2>
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+		{{form_row(form.name)}}
+		{{form_row(form.breeds , {attr:{class:'tom-select'}})}}
+		{{form_rest(form)}}
 
-	<button class="btn btn-primary" type="submit">Valider</button>
-	{{form_end(form)}}
-</div>
+		<button class="btn btn-primary" type="submit">Valider</button>
+		{{form_end(form)}}
+	</div>
 
 {% endblock body %}
-

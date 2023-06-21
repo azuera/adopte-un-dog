@@ -19,7 +19,7 @@ class Application
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'application', targetEntity: Message::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'application', targetEntity: Message::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $messages;
 
     #[ORM\ManyToOne(inversedBy: 'applications')]

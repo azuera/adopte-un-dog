@@ -7,11 +7,14 @@
 <div class="container my-5">
 <h2 class="mb-3">Répondre à l'annonce : {{offer.title}}</h2>
     {% include "offer/_offer_card.html.twig" with {offer: offer}  %}
+    {{form_start(form)}}
     <h3>Je souhaiterai des informations sur : </h3>
         {# ajouter formulaire selection des chiens #}
     <h3>Mes informations de contact</h3>
         {# Formulaire registration avec name, phone, location, department #}
     <h3>Mon message</h3>
         {# Formulaire message #}
+        {# {{form_widget(form.messages)}} #}
+    {{form_end(form)}}
 </div>
 {% endblock %}

@@ -1,24 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}inscription{% endblock %}
+{% block title %}
+    {% if user.id is same as(null) %}
+        Inscription
+    {% else %}
+        Modifier mon compte
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>inscription</h1>
+<div class="container my-5">
+    {% if user.id is same as(null) %}
+        <h2 class="mb-3">Inscription</h2>
+    {% else %}
+        <h2 class="mb-3">Modifier mon compte</h2>
+    {% endif %}
 
     {{ form_start(registrationForm) }}
     {{ form_row(registrationForm.name) }}
     {{ form_row(registrationForm.email) }}
+    {% if user.id is same as(null) %}
     {{ form_row(registrationForm.plainPassword)}}
+    {% else %}
     {{ form_row(registrationForm.phone) }}
     {{ form_row(registrationForm.location) }}
     {{ form_row(registrationForm.department) }}
+    {% endif %}
 
-
-     {% if registrationForm.vars.value.id is same as(null) %}
-        <button type="submit" class="btn btn-primary">Register</button>
+    {% if user.id is same as(null) %}
+        <button type="submit" class="btn btn-primary">S'incrire</button>
     {% else %}
-
-        <button type="submit" class="btn btn-primary">modifier</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
     {% endif %}
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}

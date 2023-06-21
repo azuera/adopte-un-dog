@@ -23,24 +23,15 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class,['label'=>'email'])
-            ->add('location',TextType::class,['label'=>'ville'])
-            ->add('phone',NumberType::class,['label'=>'telephone'])
-            ->add('name',TextType::class,['label'=>'nom'])
-            ->add('department', EntityType::class, [
-                'label'=>'departement',
-                'required' => false,
-                'class' => Department::class,
-                'query_builder' => function (DepartmentRepository $er) {
-                    return $er->createQueryBuilder('d')->orderBy('d.name', 'ASC');
-                },
-                'choice_label' => 'name',
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
+        ->add('name',TextType::class,['label'=>'Nom'])
+        ->add('email', EmailType::class,['label'=>'E-mail']);
+            if(!$options['data']->getId()){
+                $builder
+                ->add('plainPassword', PasswordType::class, [
+                    // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'label'=>'mot de passe',
+                'label'=>'Mot de passe',
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
@@ -54,12 +45,28 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ]);
+            } else {
+                // Only for change and application
+                $builder
+                ->add('phone',NumberType::class,['label'=>'Téléphone'] )
+                ->add('location',TextType::class,['label'=>'Ville'])
+                ->add('department', EntityType::class, [
+                    'label'=>'Département',
+                    'required' => false,
+                    'class' => Department::class,
+                    'query_builder' => function (DepartmentRepository $er) {
+                        return $er->createQueryBuilder('d')->orderBy('d.name', 'ASC');
+                    },
+                    'choice_label' => 'name',
+                ]);
+                }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'validation_groups' => ['Default']
         ]);
     }
 }

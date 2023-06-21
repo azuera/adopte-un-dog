@@ -25,8 +25,7 @@
                 {# Start block isClosed #}
                 <div class="mb-4 d-flex">
                     {% if not offer.isClosed %}
-                        {# @TODO (modifier path avec la page réponse) #}
-                        <a href="{{ path('app_default') }}" class="btn btn-success">Répondre à l'annonce</a>
+                        <a href="{{ path('application_make', { id: offer.id }) }}" class="btn btn-primary">Répondre à l'annonce</a>
                     {% else %}
                         <span class="badge bg-danger">L'annonce est fermée</span>
                     {% endif %}

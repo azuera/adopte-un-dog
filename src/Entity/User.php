@@ -42,12 +42,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     use HasNameTrait;
 
     #[ORM\Column(length: 128, nullable: true)]
+    #[Assert\NotBlank(groups : ['application'])]
     protected ?string $location = null;
-
+    
     #[ORM\Column(length: 64, nullable: true)]
+    #[Assert\NotBlank(groups : ['application'])]
     protected ?string $phone = null;
-
+    
     #[ORM\ManyToOne(inversedBy: 'users')]
+    #[Assert\NotBlank(groups : ['application'])]
     protected ?Department $department = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Application::class)]

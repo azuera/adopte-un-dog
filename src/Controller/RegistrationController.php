@@ -14,29 +14,33 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
-    #[Route('/register/{id}', name: 'app_register_edit', requirements:['id'=>'\d+'])]
-    public function register(Request $request,
-                             UserPasswordHasherInterface $userPasswordHasher,
-                             EntityManagerInterface $entityManager,
-                            ?user $user = null
+    #[Route('/inscription', name: 'app_register')]
+    #[Route('/modifier-compte', name: 'app_register_edit', requirements:['id'=>'\d+'])]
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager,
     ): Response
     {
-        if(is_null($user)){
+        if(is_null($this->getUser())){
             $user = new User();
+        }else{
+            $user = $this->getUser();
         }
-
+        
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+            // encode the plain password if exist
+            if($form->has('plainPassword')){
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+            }
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -47,6 +51,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'user' => $user,
         ]);
     }
 }

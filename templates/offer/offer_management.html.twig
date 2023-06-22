@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+
+{% block body %}
+    <div class="container my-5">
+        {% if offer.id %}
+        <h2 class="mb-2">Modifier l'annonce</h2>
+        {% else %}
+        <h2 class="mb-2">Créer une nouvelle annonce</h2>
+        {% endif %}
+    
+        {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.location) }}
+            {% if offer.id %}
+                {{form_row(form.isClosed)}}
+                <button type="submit"class="btn btn-primary">Valider</button>
+            {% else %}
+                <button type="submit"class="btn btn-primary">Créer</button>
+            {% endif %}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock body %}

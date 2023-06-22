@@ -4,20 +4,23 @@ namespace App\Controller;
 
 use App\Form\Filter;
 use App\Form\FilterFormType;
+use App\Form\OfferFormType;
+use App\Entity\Offer;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\OfferRepository;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class OfferController extends AbstractController
 {
-    #[Route('/offer/{id}', name: 'app_offer', requirements: ['id' => '\d+'])]
+    #[Route('/annonce/{id}', name: 'offer_show', requirements: ['id' => '\d+'])]
     public function showOffer(OfferRepository $offerRepository, int $id): Response
     {
         $offer = $offerRepository->find($id);
-        // var_dump($offer);
         return $this->render('offer/offer.html.twig', [
             'offer' => $offer,
         ]);
@@ -31,7 +34,7 @@ class OfferController extends AbstractController
         PaginatorInterface $paginator): Response
     {
         $filter = new Filter();
-        $form = $this->createForm(FilterFormType::class, $filter,['method' => 'GET',]);
+        $form = $this->createForm(FilterFormType::class, $filter, ['method' => 'GET',]);
         $form->handleRequest($request);
 
         $offers = $offerRepository->findAllOffers($filter);
@@ -43,6 +46,47 @@ class OfferController extends AbstractController
         return $this->render('offer/offers_list.html.twig', [
             'filterForm' => $form->createView(),
             'offers' => $offers,
+        ]);
+    }
+
+    #[Route("/nouvelle-offre", name: "offer_new")]
+    #[Route("/modifier-offre/{id}", name: "offer_change", requirements: ['id' => '\d+'])]
+    #[IsGranted('ROLE_BREEDER')]
+    public function manageOffer(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        ?Offer $offer = null): Response
+    {
+        $user = $this->getUser();
+        // $date = new \DateTime();
+
+        if(is_null($offer)){
+            $offer = (new Offer())
+            ->setBreeder($user)
+            // ->setDateTime($date)
+            ;
+        } elseif ($offer->getBreeder() != $user){
+            throw $this->createAccessDeniedException('NOPE');
+        }
+
+        $form = $this->createForm(OfferFormType::class, $offer);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $offer->setUpdatedTime($date);
+            $entityManager->persist($offer);
+            $entityManager->flush();
+            if($offer->isIsClosed()){
+                $this->addFlash('danger', 'Annonce fermée');
+            }else{
+                $this->addFlash('sucess', 'Annonce postée');
+            }
+            return $this->redirectToRoute('app_default');
+        }
+
+        return $this->render('offer/offer_management.html.twig', [
+            'form' => $form->createView(),
+            'offer' => $offer,
         ]);
     }
 }

@@ -23,7 +23,7 @@
 
             <p class="card-text"><small class="text-body-secondary">Mise à jour le {{ offer.updatedTime|date("d/m/Y") }} </small></p>
         </div>
-        <a href="{{ path('app_default') }}" class="btn btn-primary">Voir l'annonce</a>
+        <a href="{{ path('offer_show', { id: offer.id }) }}" class="btn btn-primary">Voir l'annonce</a>
         </div>
     </div>
 </div>

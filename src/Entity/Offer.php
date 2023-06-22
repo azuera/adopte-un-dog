@@ -40,7 +40,7 @@ class Offer
     private Collection $dogs;
 
     #[ORM\Column(name: 'updated_time', type: Types::DATETIME_MUTABLE)]
-    #[Gedmo\Timestampable]
+    #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeInterface $updatedTime = null;
 
     public function __construct()

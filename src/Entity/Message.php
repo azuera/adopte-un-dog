@@ -53,10 +53,14 @@ class Message
         return $this->application;
     }
 
-    public function setApplication(?Application $application): self
+    public function setApplication(?Application $application): string
     {
         $this->application = $application;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->getText();
     }
 }

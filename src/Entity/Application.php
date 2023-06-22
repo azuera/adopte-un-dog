@@ -116,5 +116,4 @@ class Application
         return $this;
     }
 
-
 }

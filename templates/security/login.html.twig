@@ -3,7 +3,8 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<form method="post">
+<div class="container my-5">
+<form method="post" class="w-75 mx-auto">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -20,9 +21,7 @@
     <label for="inputPassword">Mot de Passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -39,4 +38,5 @@
         Se connecter
     </button>
 </form>
+</div>
 {% endblock %}

@@ -12,10 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ApplicationController extends AbstractController
 {
     #[Route('/repondre-annonce-{id}', name: 'application_make', requirements: ['id' => '\d+'])]
+    #[IsGranted('ROLE_USER')]
     public function makeApplication(
         Request $request,
         OfferRepository $offerRepository,
@@ -23,24 +25,30 @@ class ApplicationController extends AbstractController
         ApplicationRepository $applicationRepository): Response
     {
         $user = $this->getUser();
-        $message = (new Message())->setIsSentByAdopter(true);
-        $application = (new Application())
+
+        if( $user == $offer->getBreeder()){
+            $this->addFlash('danger', 'Vous ne pouvez pas répondre à votre propre annonce');
+            return $this->redirectToRoute('offer_show', ['id'=>$offer->getId(),] );
+        } else {
+            $message = (new Message())->setIsSentByAdopter(true);
+            $application = (new Application())
             ->setUser($user)
             ->setOffer($offer)
             ->addMessage($message);
         
-        $form = $this->createForm(ApplicationFormType::class, $application);
-        $form->handleRequest($request);
+            $form = $this->createForm(ApplicationFormType::class, $application);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $applicationRepository->save($application, true);
-            $this->addFlash('success', 'Demande de renseignement envoyée');
-            return $this->redirectToRoute('app_default');
+            if ($form->isSubmitted() && $form->isValid()) {
+                $applicationRepository->save($application, true);
+                $this->addFlash('success', 'Demande de renseignement envoyée');
+                return $this->redirectToRoute('app_default');
+            }
+        
+            return $this->render('application/application_make.html.twig', [
+                'offer' => $offer,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('application/application_make.html.twig', [
-            'offer' => $offer,
-            'form' => $form->createView(),
-        ]);
     }
 }

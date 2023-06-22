@@ -1,68 +1,29 @@
 {% extends 'base.html.twig' %}
 
-
-
 {% block body %}
-    <div>
-        <h3>{{ user.name }}</h3>
-        <p>{{ user.email }}</p>
-        <p>{{ user.location }}</p>
-        <p>{{ user.phone }}</p>
-        <p><a class="btn btn-primary" href="{{ path('app_register_edit',{id:app.user.id}) }}">modifier</a></p>
-    </div>
+<div class="container">
+    <section class="mb-3">
+        <h2 class="mb-3">Mes informations</h2>
+        <div class="d-flex w-50 ms-5">
+            <ul class="list-unstyled w-25">
+                <li>Nom : </li>
+                <li>E-mail : </li>
+                <li>Ville : </li>
+                <li>Téléphone : </li>
+            </ul>
+            <ul class="list-unstyled w-75">
+                <li>{{ user.name }}</li>
+                <li>{{ user.email }}</li>
+                <li>{{ user.location }}</li>
+                <li>{{ user.phone }}</li>
+            </ul>
+        </div>
+        <a class="btn btn-primary" href="{{ path('app_register_edit',{id:app.user.id}) }}">Modifier mes informations</a>
+    </section>
+
     {% if  is_granted('ROLE_BREEDER') %}
-        <div>
-            <h3>Mes Annonces</h3>
-            <table class="table">
-                <thead>
-                <tr class="">
-                    <th scope="col">Titre</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Mise à jour</th>
-                    <th scope="col" class="text-center">Dernier message</th>
-                    <th scope="col" class="text-center">🔎</th>
-                    <th scope="col" class="text-center">📝</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for offer in offers %}
-                    <tr>
-                        <td>{{ offer.title }}</td>
-                        <td>{{ offer.description }}</td>
-                        <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
-                        <td>{{ offer.getLastMessageDate()|date("d/m/y H:i") }}</td>
-                        <td><a class="btn btn-primary" href="{{ path('app_offer',{id:offer.id}) }}">voir l'annonce </a></td>
-                        <td><a class="btn btn-warning" href="{{ path('app_default') }}">modifier votre annonce </a></td>
-                    </tr>
-                {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
+        {% include "user/_offer_table.html.twig" with {offers: offers}  %}
     {% endif %}
-    {% if  is_granted('ROLE_USER') and not is_granted('ROLE_BREEDER') %}
-        <div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Titre de mon offre</th>
-                    <th scope="col">createur de la disscution</th>
-                    <th scope="col">Nombres de message</th>
-                    <th scope="col" class="text-center">🔎</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                {% for application in applications %}
-                    <tr>
-                        <td>{{application.offer.title }}</td>
-                        <td>{{ application.user.name}}</td>
-                        <td>{{ application.messages|length }}</td>
-                        <td><a class="btn btn-primary" href="{{ path('app_offer',{id:application.offer.id}) }}">voir l'annonce </a></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% endif %}
+        {% include "user/_application_table.html.twig" with {applications: applications}  %}
+</div>
 {% endblock %}

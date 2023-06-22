@@ -1,0 +1,27 @@
+<div>
+    <h2 class="mb-3">Mes annonces</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr class="">
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Mise à jour</th>
+            <th scope="col" class="text-center">Dernier message</th>
+            <th scope="col" class="text-center">🔎</th>
+            <th scope="col" class="text-center">📝</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for offer in offers %}
+            <tr>
+                <td>{{ offer.title }}</td>
+                <td>{{ offer.description }}</td>
+                <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
+                <td>{{ offer.getLastMessageDate()|date("d/m/y H:i") }}</td>
+                <td><a class="btn btn-primary" href="{{ path('app_offer',{id:offer.id}) }}">voir l'annonce </a></td>
+                <td><a class="btn btn-warning" href="{{ path('app_default') }}">modifier votre annonce </a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

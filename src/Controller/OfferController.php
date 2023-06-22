@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Dog;
+use App\Entity\Image;
 use App\Form\Filter;
 use App\Form\FilterFormType;
 use App\Form\OfferFormType;
@@ -49,8 +51,8 @@ class OfferController extends AbstractController
         ]);
     }
 
-    #[Route("/nouvelle-offre", name: "offer_new")]
-    #[Route("/modifier-offre/{id}", name: "offer_change", requirements: ['id' => '\d+'])]
+    #[Route("/nouvelle-annonce", name: "offer_new")]
+    #[Route("/modifier-annonce/{id}", name: "offer_change", requirements: ['id' => '\d+'])]
     #[IsGranted('ROLE_BREEDER')]
     public function manageOffer(
         Request $request,
@@ -58,13 +60,13 @@ class OfferController extends AbstractController
         ?Offer $offer = null): Response
     {
         $user = $this->getUser();
-        // $date = new \DateTime();
 
         if(is_null($offer)){
+            $image = new Image();
+            $dog = (new Dog())->addImage($image);
             $offer = (new Offer())
             ->setBreeder($user)
-            // ->setDateTime($date)
-            ;
+            ->addDog($dog);
         } elseif ($offer->getBreeder() != $user){
             throw $this->createAccessDeniedException('NOPE');
         }
@@ -73,9 +75,9 @@ class OfferController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // $offer->setUpdatedTime($date);
             $entityManager->persist($offer);
             $entityManager->flush();
+
             if($offer->isIsClosed()){
                 $this->addFlash('danger', 'Annonce fermée');
             }else{

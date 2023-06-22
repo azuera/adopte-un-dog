@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
+    #[Route('/mon-compte', name: 'app_user')]
     #[IsGranted('ROLE_USER')]
     public function showUser(OfferRepository $offerRepository, ApplicationRepository $applicationRepository): Response
     {
@@ -20,9 +20,6 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $offers = $offerRepository->findForBreeders($user);
         $applications = $applicationRepository->findUserApplications($user);
-//        dd($applications);
-
-
 
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',

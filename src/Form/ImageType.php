@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class DogsImagesType extends AbstractType
+class ImageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options, ): void
     {
@@ -23,11 +23,6 @@ class DogsImagesType extends AbstractType
                     'asset_helper' => true,
                 ]
             )
-            ->add('dog', EntityType::class, [
-                'class' => Dog::class,
-                'label' => 'Chien',
-                'required' => true
-            ])
         ;
     }
 

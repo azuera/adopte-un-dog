@@ -1,5 +1,6 @@
 <div>
     <h2 class="mb-3">Mes annonces</h2>
+    <a class="btn btn-primary mb-3 mx-end" href="{{ path('offer_new') }}">Créer une annonce</a>
     <table class="table table-striped">
         <thead>
         <tr class="">
@@ -18,8 +19,8 @@
                 <td>{{ offer.description }}</td>
                 <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
                 <td>{{ offer.getLastMessageDate()|date("d/m/y H:i") }}</td>
-                <td class="text-center"><a class="btn btn-primary" href="{{ path('app_offer',{id:offer.id}) }}"><i class="fa-solid fa-magnifying-glass"></a></td>
-                <td class="text-center"><a class="btn btn-warning" href="{{ path('app_default') }}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td class="text-center"><a class="btn btn-primary" href="{{ path('offer_show', {id:offer.id}) }}"><i class="fa-solid fa-magnifying-glass"></a></td>
+                <td class="text-center"><a class="btn btn-warning" href="{{ path('offer_change', {id:offer.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

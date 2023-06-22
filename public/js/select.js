@@ -1,4 +1,6 @@
 document.querySelectorAll('.tom-select').forEach((el)=>{
-	let settings = {};
- 	new TomSelect(el,settings);
+	let settings = {
+		plugins: ['remove_button']
+	};
+	new TomSelect(el,settings);
 });

@@ -7,8 +7,8 @@
             <th scope="col">Description</th>
             <th scope="col">Mise à jour</th>
             <th scope="col" class="text-center">Dernier message</th>
-            <th scope="col" class="text-center">🔎</th>
-            <th scope="col" class="text-center">📝</th>
+            <th scope="col" class="text-center">Voir l'annonce</th>
+            <th scope="col" class="text-center">Modifier l'annonce</th>
         </tr>
         </thead>
         <tbody>
@@ -18,8 +18,8 @@
                 <td>{{ offer.description }}</td>
                 <td>{{ offer.updatedTime|date("d/m/Y") }}</td>
                 <td>{{ offer.getLastMessageDate()|date("d/m/y H:i") }}</td>
-                <td><a class="btn btn-primary" href="{{ path('app_offer',{id:offer.id}) }}">voir l'annonce </a></td>
-                <td><a class="btn btn-warning" href="{{ path('app_default') }}">modifier votre annonce </a></td>
+                <td class="text-center"><a class="btn btn-primary" href="{{ path('app_offer',{id:offer.id}) }}"><i class="fa-solid fa-magnifying-glass"></a></td>
+                <td class="text-center"><a class="btn btn-warning" href="{{ path('app_default') }}"><i class="fa-solid fa-pen-to-square"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

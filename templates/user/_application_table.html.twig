@@ -1,12 +1,13 @@
 <div>
-    <h2 class="mb-3">Mes demandes d'informations</h2>
+    <h2 class="mb-3">Mes discussions</h2>
     <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">Titre de mon offre</th>
             <th scope="col">Créateur de la discussion</th>
             <th scope="col">Nombres de message</th>
-            <th scope="col" class="text-center">🔎</th>
+            <th scope="col" class="text-center">Voir l'annonce</th>
+            <th scope="col" class="text-center">Voir la discussion</th>
         </tr>
         </thead>
         <tbody>
@@ -15,7 +16,8 @@
                 <td>{{application.offer.title }}</td>
                 <td>{{ application.user.name}}</td>
                 <td>{{ application.messages|length }}</td>
-                <td><a class="btn btn-primary" href="{{ path('app_offer',{id:application.offer.id}) }}">Voir l'annonce</a></td>
+                <td class="text-center"><a class="btn btn-primary" href="{{ path('app_offer',{id:application.offer.id}) }}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
+                <td class="text-center"><a class="btn btn-warning" href="{{ path('app_offer',{id:application.offer.id}) }}"><i class="fa-regular fa-comment"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

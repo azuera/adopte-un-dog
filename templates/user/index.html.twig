@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Mon compte{% endblock %}
+
 {% block body %}
 <div class="container">
     <section class="mb-3">
@@ -18,7 +20,7 @@
                 <li>{{ user.phone }}</li>
             </ul>
         </div>
-        <a class="btn btn-primary" href="{{ path('app_register_edit',{id:app.user.id}) }}">Modifier mes informations</a>
+        <a class="btn btn-warning" href="{{ path('app_register_edit',{id:app.user.id}) }}">Modifier mes informations</a>
     </section>
 
     {% if  is_granted('ROLE_BREEDER') %}

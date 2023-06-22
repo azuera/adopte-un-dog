@@ -14,7 +14,7 @@ class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
     #[IsGranted('ROLE_USER')]
-    public function showUser( OfferRepository $offerRepository ,ApplicationRepository $applicationRepository): Response
+    public function showUser(OfferRepository $offerRepository, ApplicationRepository $applicationRepository): Response
     {
         /** @var User $user */
         $user = $this->getUser();

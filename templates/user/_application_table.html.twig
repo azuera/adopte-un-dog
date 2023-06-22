@@ -13,11 +13,11 @@
         <tbody>
         {% for application in applications %}
             <tr>
-                <td>{{application.offer.title }}</td>
-                <td>{{ application.user.name}}</td>
+                <td>{{ application.offer.title }}</td>
+                <td>{{ application.user.name }}</td>
                 <td>{{ application.messages|length }}</td>
-                <td class="text-center"><a class="btn btn-primary" href="{{ path('app_offer',{id:application.offer.id}) }}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
-                <td class="text-center"><a class="btn btn-warning" href="{{ path('app_offer',{id:application.offer.id}) }}"><i class="fa-regular fa-comment"></i></a></td>
+                <td class="text-center"><a class="btn btn-primary" href="{{ path('app_offer', {id:application.offer.id}) }}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
+                <td class="text-center"><a class="btn btn-warning" href="{{ path('app_offer', {id:application.offer.id}) }}"><i class="fa-regular fa-comment"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -190,18 +190,19 @@ class Offer
         return $images;
     }
 
-    public function hasLOFDog():bool
+    public function hasLOFDog(): bool
     {
         $isDogLof = false;
-        foreach ( $this->dogs as $dog ){
-            if ( $dog->isIsLof() == true ){
+        foreach ($this->dogs as $dog) {
+            if ($dog->isIsLof() == true) {
                 $isDogLof = true;
             }
         }
         return $isDogLof;
     }
-    
-    public function __toString():string{
+
+    public function __toString(): string
+    {
         return $this->getTitle();
     }
 

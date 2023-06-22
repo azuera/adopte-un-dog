@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DogRepository::class)]
 class Dog
@@ -20,7 +21,7 @@ class Dog
 
     use HasDescrTrait;
 
-    #[ORM\Column (options:["default"=>false])]
+    #[ORM\Column(options: ["default" => false])]
     private ?bool $isLOF = false;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -29,7 +30,7 @@ class Dog
     #[ORM\Column(type: Types::TEXT)]
     private ?string $sociability = null;
 
-    #[ORM\Column (options:["default"=>false])]
+    #[ORM\Column(options: ["default" => false])]
     private ?bool $isAdopted = false;
 
     #[ORM\ManyToOne(inversedBy: 'dogs')]
@@ -194,9 +195,20 @@ class Dog
         return $this;
     }
 
-    public function __toString():string{
+    public function __toString(): string
+    {
         return $this->getName();
- 
+
+    }
+
+    #[Assert\IsTrue(message: 'Un chien avec plusieurs races ne peut être LOF')]
+    public function isLofOK(): bool
+    {
+        if ($this->isIsLOF() && $this->getBreeds()->count() > 1) {
+            return false;
+        }
+
+        return true;
     }
 
 }

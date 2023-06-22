@@ -20,19 +20,16 @@ class ApplicationCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             AssociationField::new('user')
-            ->onlyOnForms()
-            ->setFormTypeOptions(['by_reference' => false ]) ,
+                ->onlyOnForms(),
 
-            AssociationField::new('offer') 
-            ->onlyOnForms()
-            ->setFormTypeOptions(['by_reference' => false ]) ,
-            
+            AssociationField::new('offer')
+                ->onlyOnForms(),
+
             AssociationField::new('dogs')
-            ->onlyOnForms()
-            ->setFormTypeOptions(['by_reference' => false ]) ,
+                ->onlyOnForms()
+                ->setFormTypeOptions(['by_reference' => false]),
             DateTimeField::new('date_time'),
-        
         ];
     }
-    
+
 }

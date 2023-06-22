@@ -1,29 +1,50 @@
-<div class="card mb-3 w-75 mx-auto" >
+<div class="card mb-3 w-75 mx-auto">
     <div class="d-flex p-2 gap-2 justify-content-center align-items-center" style="height: 400px;">
-        <img src="{{asset('/media/poppy_1.jpg')}}" class="card-img-top rounded h-100 object-fit-cover" alt="...">
-        <img src="{{asset('/media/poppy_2.jpg')}}" class="card-img-top rounded h-100 object-fit-cover" alt="...">
-        <img src="{{asset('/media/poppy_3.jpg')}}" class="card-img-top rounded h-100 object-fit-cover" alt="...">
+
+        {% for image in offer.images %}
+            {% if loop.index < 4 %}
+                <img src="{{vich_uploader_asset(image)}}" class="d-block w-100 card-img-top rounded h-100 object-fit-cover" alt="...">
+            {% endif %}
+        {% endfor %}
+
     </div>
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
-            <h5 class="card-title">{{ offer.title }}</h5>
+            <h5 class="card-title">
+                {{ offer.title }}
+            </h5>
             {% if offer.hasLOFDog %}
-                <span class="badge text-bg-info">LOF</span>
+                <span class="badge text-bg-info">
+                    LOF
+                </span>
             {% endif %}
         </div>
         <div class="d-flex align-items-center justify-content-between">
-        
-        <div class="w-75">
-            <p>Nombre de chiens : {{ offer.dogs|length }}</p>
-            <p>Races :
-                {% for breed in offer.breeds %}
-                    <span class="p-2 rounded text-bg-light">{{ breed.name }}</span> 
-                {% endfor %}
-            </p>
 
-            <p class="card-text"><small class="text-body-secondary">Mise à jour le {{ offer.updatedTime|date("d/m/Y") }} </small></p>
-        </div>
-        <a href="{{ path('offer_show', { id: offer.id }) }}" class="btn btn-primary">Voir l'annonce</a>
+            <div class="w-75">
+                <p>
+                    Nombre de chiens :
+                    {{ offer.dogs|length }}
+                </p>
+                <p>
+                    Races :
+                    {% for breed in offer.breeds %}
+                        <span class="p-2 rounded text-bg-light">
+                            {{ breed.name }}
+                        </span>
+                    {% endfor %}
+                </p>
+
+                <p class="card-text">
+                    <small class="text-body-secondary">
+                        Mise à jour le
+                        {{ offer.updatedTime|date("d/m/Y") }}
+                    </small>
+                </p>
+            </div>
+            <a href="{{ path('offer_show', { id: offer.id }) }}" class="btn btn-primary">
+                Voir l'annonce
+            </a>
         </div>
     </div>
 </div>

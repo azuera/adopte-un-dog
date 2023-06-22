@@ -43,7 +43,7 @@
                     {# Images #}
                     {% for image in offer.images %}
                         <div class="carousel-item{% if loop.first %} active{% endif %}">
-                            <img src="{{asset(image.path)}}" class="d-block w-100" alt="...">
+                            <img src="{{vich_uploader_asset(image)}}" class="d-block w-100" alt="...">
                         </div>
                     {% endfor %}
                 </div>
@@ -85,7 +85,7 @@
                                     {# Images #}
                                     {% for image in dog.images %}
                                         <div class="image-card carousel-item{% if loop.first %} active{% endif %}">
-                                            <img src="{{asset(image.path)}}" class="d-block w-100" alt="...">
+                                            <img src="{{vich_uploader_asset(image)}}" class="d-block w-100" alt="...">
                                         </div>
                                     {% endfor %}
                                 </div>

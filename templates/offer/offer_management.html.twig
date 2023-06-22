@@ -16,7 +16,7 @@
             {{ form_row(form.description) }}
             {{ form_row(form.location) }}
             <h4>Ajouter les chiens :</h4>
-            {{ form_widget(form.dogs) }}
+            {{ form_row(form.dogs) }}
 
             {% if offer.id %}
                 {{form_row(form.isClosed)}}

@@ -4,7 +4,10 @@ twig:
     paths:
         '%kernel.project_dir%/vendor/knplabs/knp-paginator-bundle/templates': KnpPaginator
 
-    form_themes: ['bootstrap_5_horizontal_layout.html.twig']
+    form_themes: [
+        'bootstrap_5_horizontal_layout.html.twig',
+        'default/theme.html.twig'
+        ]
 
 when@test:
     twig:

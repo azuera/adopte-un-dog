@@ -62,11 +62,8 @@ class OfferController extends AbstractController
         $user = $this->getUser();
 
         if(is_null($offer)){
-            $image = new Image();
-            $dog = (new Dog())->addImage($image);
             $offer = (new Offer())
-            ->setBreeder($user)
-            ->addDog($dog);
+            ->setBreeder($user);
         } elseif ($offer->getBreeder() != $user){
             throw $this->createAccessDeniedException('NOPE');
         }

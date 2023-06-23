@@ -55,8 +55,10 @@ class DogFormType extends AbstractType
             ])
             ->add('images', CollectionType::class,[
                 'label' => 'Ajouter une image',
+                'required' => false,
                 'entry_type'=> ImageType::class,
                 'entry_options' => ['label' => false],
+                'prototype_name' => '__images__',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference'  => false,

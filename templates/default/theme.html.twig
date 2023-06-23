@@ -1,8 +1,6 @@
 {% block collection_row %}
     <div class="w-75 mx-auto">
-        {% if label %}
             <h4>{{ label }}</h4>
-        {% endif %}
         <button type="button" class="add_item_link btn btn-success" data-collection-holder-class="{{ id }}">
             Ajouter
         </button>
@@ -10,6 +8,7 @@
             class="{{ id }} list-unstyled"
             data-index="{{ form|length > 0 ? form|last.vars.name + 1 : 0 }}"
             data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}"
+            data-prototype-name="__{{ form.vars.name }}__"
             data-collection-holder
         >
             {% for childForm in form %}

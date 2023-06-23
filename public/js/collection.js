@@ -5,8 +5,12 @@ const addFormToCollection = (e) => {
 
     const item = document.createElement("li");
 
+    let protoName = collectionHolder.dataset.prototypeName;
+
+    var regex = new RegExp(protoName,"g");
+
     item.innerHTML = collectionHolder.dataset.prototype.replace(
-        /__name__/g,
+        regex,
         collectionHolder.dataset.index
     );
 
@@ -32,7 +36,7 @@ const addChildFormDeleteLink = (item) => {
     removeFormButton.classList.add("btn");
     removeFormButton.classList.add("btn-danger");
 
-    item.prepend(removeFormButton);
+    item.append(removeFormButton);
 
     removeFormButton.addEventListener("click", (e) => {
         e.preventDefault();

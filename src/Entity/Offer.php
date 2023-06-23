@@ -37,7 +37,7 @@ class Offer
     #[ORM\JoinColumn(nullable: false)]
     private ?Breeder $breeder = null;
 
-    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Dog::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'offer', cascade: ['persist'], targetEntity: Dog::class, orphanRemoval: true)]
     private Collection $dogs;
 
     #[ORM\Column(name: 'updated_time', type: Types::DATETIME_MUTABLE)]

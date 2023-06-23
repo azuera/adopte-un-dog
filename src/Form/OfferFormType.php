@@ -27,8 +27,10 @@ class OfferFormType extends AbstractType
                 'label' => 'Ville',
             ])
             ->add('dogs', CollectionType::class, [
+                'label' => 'Ajouter un chien',
                 'entry_type' => DogFormType::class,
                 'entry_options' => ['label' => false],
+                'prototype_name' => '__dogs__',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference'  => false,

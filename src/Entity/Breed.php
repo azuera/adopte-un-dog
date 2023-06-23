@@ -16,7 +16,7 @@ class Breed
 
     use HasNameTrait;
 
-    #[ORM\ManyToMany(targetEntity: Dog::class, inversedBy: 'breeds')]
+    #[ORM\ManyToMany(targetEntity: Dog::class, cascade: ['persist'], inversedBy: 'breeds')]
     private Collection $dogs;
 
     public function __construct()

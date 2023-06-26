@@ -1,7 +1,6 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
 
-<<<<<<< HEAD
     paths:
         '%kernel.project_dir%/vendor/knplabs/knp-paginator-bundle/templates': KnpPaginator
 
@@ -10,8 +9,6 @@ twig:
         'default/theme.html.twig'
         ]
 
-=======
->>>>>>> db5fd50 (récuperation)
 when@test:
     twig:
         strict_variables: true

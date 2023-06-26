@@ -1,17 +1,9 @@
 framework:
-<<<<<<< HEAD
     default_locale: fr
     translator:
         default_path: '%kernel.project_dir%/translations'
         fallbacks:
             - fr
-=======
-    default_locale: en
-    translator:
-        default_path: '%kernel.project_dir%/translations'
-        fallbacks:
-            - en
->>>>>>> db5fd50 (récuperation)
 #        providers:
 #            crowdin:
 #                dsn: '%env(CROWDIN_DSN)%'

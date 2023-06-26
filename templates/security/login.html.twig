@@ -1,17 +1,10 @@
 {% extends 'base.html.twig' %}
 
-<<<<<<< HEAD
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
 <div class="container my-5">
 <form method="post" class="w-75 mx-auto">
-=======
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
-<form method="post">
->>>>>>> db5fd50 (récuperation)
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -22,7 +15,6 @@
         </div>
     {% endif %}
 
-<<<<<<< HEAD
     <h2 class="mb-3">Connecte toi allezzzzzz viens!!!!! On est bien!!!!!</h1>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
@@ -30,17 +22,6 @@
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-=======
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
->>>>>>> db5fd50 (récuperation)
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -52,18 +33,10 @@
             </label>
         </div>
     #}
-<<<<<<< HEAD
     <div><a class="link-primary" href="{{ path('app_register') }}">Pas encore inscrit, c'est par ici</a></div>
     <button class="btn btn-lg btn-primary" type="submit">
         Se connecter
     </button>
 </form>
 </div>
-=======
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
->>>>>>> db5fd50 (récuperation)
 {% endblock %}

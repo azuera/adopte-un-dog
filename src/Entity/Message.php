@@ -53,7 +53,7 @@ class Message
         return $this->application;
     }
 
-    public function setApplication(?Application $application): string
+    public function setApplication(?Application $application): self
     {
         $this->application = $application;
 

@@ -37,7 +37,7 @@ class Dog
     #[ORM\JoinColumn(nullable: false)]
     private ?Offer $offer = null;
 
-    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Image::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'dog', cascade: ['persist'], targetEntity: Image::class, orphanRemoval: true)]
     private Collection $images;
 
     #[ORM\ManyToMany(targetEntity: Application::class, inversedBy: 'dogs')]
@@ -204,7 +204,7 @@ class Dog
     #[Assert\IsTrue(message: 'Un chien avec plusieurs races ne peut être LOF')]
     public function isLofOK(): bool
     {
-        if ($this->isIsLOF() && $this->getBreeds()->count() > 1) {
+        if ($this->isIsLOF() && $this->getBreeds()->count() != 1) {
             return false;
         }
 

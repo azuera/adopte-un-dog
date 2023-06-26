@@ -1,0 +1,64 @@
+<div class="p-2 col-4">
+    <div class="card">
+        {# Start Carousel #}
+        <div id="carousel-{{ dog.id }}" class="carousel slide p-2" data-bs-ride="carousel">
+            {# Small select #}
+            <div class="carousel-indicators">
+                {% for image in dog.images %}
+                    <button type="button" data-bs-target="#carousel-{{ dog.id }}" data-bs-slide-to="{{ loop.index0 }}" aria-label="Slide {{ loop.index }}" {% if loop.first %} class="active" aria-current="true" {% endif %}></button>
+                {% endfor %}
+            </div>
+            {# Images #}
+            <div class="carousel-inner rounded" style="height: 400px;">
+                {% for image in dog.images %}
+                    <div class="image-card carousel-item{% if loop.first %} active{% endif %}">
+                        <img src="{{vich_uploader_asset(image)}}" class="d-block w-100 object-fit-cover" alt="...">
+                    </div>
+                {% endfor %}
+            </div>
+            {# Btn left #}
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ dog.id }}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            {# Btn right #}
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ dog.id }}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        {# End Carousel #}
+
+        {# Start card body #}
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="card-title">{{ dog.name }}</h3>
+                {% if dog.isLOF %}
+                    <span class="badge text-bg-info">LOF</span>
+                {% endif %}
+            </div>
+            {# Breeds #}
+            <p class="card-text">
+                {% for breed in dog.breeds %}
+                    <span class="p-2 rounded text-bg-light">{{ breed.name }}</span>
+                {% endfor %}
+            </p>
+            {# infos #}
+            <h5>Description :</h5>
+            <p class="card-text">{{ dog.description }}</p>
+            <h5>Antécédents :</h5>
+            <p class="card-text">{{ dog.history }}</p>
+            <h5>Sociabilité :</h5>
+            <p class="card-text">
+                {{ dog.sociability }}
+            </p>
+            {# Badge isAdopted #}
+            {% if not dog.isAdopted %}
+                <p class="badge bg-success">Chien disponible</p>
+            {% else %}
+                <p class="badge bg-danger">Chien indisponible</p>
+            {% endif %}
+        </div>
+        {# End card body #}
+    </div>
+</div>

@@ -15,6 +15,8 @@
             {{ form_row(form.title) }}
             {{ form_row(form.description) }}
             {{ form_row(form.location) }}
+            {{ form_row(form.dogs) }}
+
             {% if offer.id %}
                 {{form_row(form.isClosed)}}
                 <button type="submit"class="btn btn-primary">Valider</button>

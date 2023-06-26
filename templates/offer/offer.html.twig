@@ -36,11 +36,11 @@
                         <button type="button" data-bs-target="#carousel-annonce" data-bs-slide-to="{{ loop.index0 }}" aria-label="Slide {{ loop.index }}" {% if loop.first %} class="active" aria-current="true" {% endif %}></button>
                     {% endfor %}
                 </div>
-                <div class="carousel-inner rounded" style="height: 350px;">
+                <div class="carousel-inner rounded" style="height: 450px;">
                     {# Images #}
                     {% for image in offer.images %}
                         <div class="carousel-item{% if loop.first %} active{% endif %}">
-                            <img src="{{vich_uploader_asset(image)}}" class="d-block object-fit-cover w-100" alt="...">
+                            <img src="{{vich_uploader_asset(image)}}" class="d-block w-100 object-fit-cover" alt="...">
                         </div>
                     {% endfor %}
                 </div>

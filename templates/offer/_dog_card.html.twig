@@ -9,7 +9,7 @@
                 {% endfor %}
             </div>
             {# Images #}
-            <div class="carousel-inner rounded" style="height: 350px;">
+            <div class="carousel-inner rounded" style="height: 400px;">
                 {% for image in dog.images %}
                     <div class="image-card carousel-item{% if loop.first %} active{% endif %}">
                         <img src="{{vich_uploader_asset(image)}}" class="d-block w-100 object-fit-cover" alt="...">

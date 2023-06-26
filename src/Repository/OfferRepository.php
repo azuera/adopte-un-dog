@@ -45,10 +45,9 @@ class OfferRepository extends ServiceEntityRepository
 
     public function findForBreeders(User $user): array
     {
-
         return $this->findOffers()
-            ->leftJoin('o.applications','a')
-            ->leftJoin('a.messages','m')
+            ->leftJoin('o.applications', 'a')
+            ->leftJoin('a.messages', 'm')
             ->andWhere('o.breeder = :id ')
             ->setParameter('id', $user->getId())
             ->orderBy('m.isSentByAdopter', 'DESC')
@@ -56,7 +55,7 @@ class OfferRepository extends ServiceEntityRepository
             ->addOrderBy('o.updatedTime', 'DESC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findOffers(): QueryBuilder
@@ -84,14 +83,14 @@ class OfferRepository extends ServiceEntityRepository
     public function findAllOffers(Filter $filter): Query
     {
         $filteredQuery = $this->findOffers();
-        if (!empty($filter->getBreed())) {
+        if (!is_null($filter->getBreed())) {
             $filteredQuery->andWhere('b.id = :id')
                 ->setParameter('id', $filter->getBreed()->getId());
         }
-        if (!empty($filter->getLof())) {
+        if ($filter->getLof()) {
             $filteredQuery->andWhere('d.isLOF = true');
         }
+
         return $filteredQuery->getQuery();
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\HasIdTrait;
 use App\Entity\Traits\HasCreatedTime;
+use App\Entity\Traits\HasIdTrait;
 use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +17,7 @@ class Message
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
-    #[ORM\Column (options:["default"=>false])]
+    #[ORM\Column(options: ['default' => false])]
     private ?bool $isSentByAdopter = false;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
@@ -59,6 +59,7 @@ class Message
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->getText();

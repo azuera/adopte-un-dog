@@ -23,12 +23,12 @@ class DepartmentFixtures extends Fixture
             'csv'
         );
 
-        foreach ($departments as $department){
-            $dept= new Department();
-            $dept->setName($department["nom_departement"]);
-            $dept->setNumber($department["code_departement"]);
+        foreach ($departments as $department) {
+            $dept = new Department();
+            $dept->setName($department['nom_departement']);
+            $dept->setNumber($department['code_departement']);
             $manager->persist($dept);
         }
-        $manager ->flush();
+        $manager->flush();
     }
 }

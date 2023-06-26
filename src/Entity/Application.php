@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\HasIdTrait;
 use App\Entity\Traits\HasCreatedTime;
+use App\Entity\Traits\HasIdTrait;
 use App\Repository\ApplicationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -115,5 +115,4 @@ class Application
 
         return $this;
     }
-
 }

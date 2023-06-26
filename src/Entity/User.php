@@ -15,14 +15,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[ORM\InheritanceType("JOINED")]
-#[ORM\DiscriminatorColumn(name: "discr", type: "string")]
-#[ORM\DiscriminatorMap(["user" => User::class, "breeder" => Breeder::class])]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
+#[ORM\DiscriminatorMap(['user' => User::class, 'breeder' => Breeder::class])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use HasIdTrait;
+    use HasNameTrait;
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Email]
@@ -39,16 +39,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected ?string $password = null;
     private ?string $PlainPassword = null;
 
-    use HasNameTrait;
-
     #[ORM\Column(length: 128, nullable: true)]
     #[Assert\NotBlank(groups : ['application'])]
     protected ?string $location = null;
-    
+
     #[ORM\Column(length: 64, nullable: true)]
     #[Assert\NotBlank(groups : ['application'])]
     protected ?string $phone = null;
-    
+
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[Assert\NotBlank(groups : ['application'])]
     protected ?Department $department = null;
@@ -192,23 +190,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-	/**
-	 * @return 
-	 */
-	public function getPlainPassword(): ?string {
-		return $this->PlainPassword;
-	}
-	
-	/**
-	 * @param  $PlainPassword 
-	 * @return self
-	 */
-	public function setPlainPassword(?string $PlainPassword): self {
-		$this->PlainPassword = $PlainPassword;
-		return $this;
-	}
+    public function getPlainPassword(): ?string
+    {
+        return $this->PlainPassword;
+    }
 
-    public function __toString():string{
+    public function setPlainPassword(?string $PlainPassword): self
+    {
+        $this->PlainPassword = $PlainPassword;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
         return $this->getName();
     }
 }

@@ -2,9 +2,8 @@
 
 namespace App\Form;
 
-use App\Form\Filter;
-use App\Repository\BreedRepository;
 use App\Entity\Breed;
+use App\Repository\BreedRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -16,7 +15,7 @@ class FilterFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('breed', EntityType::class,[
+            ->add('breed', EntityType::class, [
                 'label' => 'Race',
                 'class' => Breed::class,
                 'query_builder' => function (BreedRepository $er) {
@@ -26,10 +25,10 @@ class FilterFormType extends AbstractType
                 'required' => false,
             ])
             ->add('LOF', CheckboxType::class,
-            [
-                'label' => 'LOF',
-                'required' => false,
-            ])
+                [
+                    'label' => 'LOF',
+                    'required' => false,
+                ])
         ;
     }
 

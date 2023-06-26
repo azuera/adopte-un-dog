@@ -4,8 +4,6 @@ namespace App\Form;
 
 use App\Entity\Application;
 use App\Entity\Dog;
-use App\Entity\Message;
-use App\Entity\Offer;
 use App\Repository\DogRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -38,7 +36,7 @@ class ApplicationFormType extends AbstractType
             ->add('messages', CollectionType::class, [
                 'label' => false,
                 'entry_type' => MessageType::class,
-                'entry_options'=> ['label' => false,]
+                'entry_options' => ['label' => false],
             ])
             ->add('user', RegistrationFormType::class, [
                 'label' => 'Vos informations',

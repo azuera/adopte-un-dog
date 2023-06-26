@@ -3,12 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Offer;
-use App\Form\DogFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,9 +32,9 @@ class OfferFormType extends AbstractType
                 'prototype_name' => '__dogs__',
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference'  => false,
+                'by_reference' => false,
             ]);
-        if($options['data']->getId()){
+        if ($options['data']->getId()) {
             $builder->add('isClosed', CheckboxType::class, [
                 'label' => 'Fermer l\'annonce?',
                 'required' => false,

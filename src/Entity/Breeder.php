@@ -63,6 +63,7 @@ class Breeder extends User
 
         return $this;
     }
+
     /**
      * @see UserInterface
      */
@@ -78,4 +79,3 @@ class Breeder extends User
         return array_unique($roles);
     }
 }
-

@@ -192,19 +192,19 @@ class Dog
 
         return $this;
     }
-    
+
     public function __toString(): string
     {
         return $this->getName();
     }
+
     #[Assert\IsTrue(message: 'Un chien avec plusieurs races ne peut être LOF')]
     public function isLofOK(): bool
     {
-        if ($this->isIsLOF() && $this->getBreeds()->count() != 1) {
+        if ($this->isIsLOF() && 1 != $this->getBreeds()->count()) {
             return false;
         }
 
         return true;
     }
 }
-

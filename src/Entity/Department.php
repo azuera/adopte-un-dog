@@ -65,6 +65,7 @@ class Department
                 $user->setDepartment(null);
             }
         }
+
         return $this;
     }
 

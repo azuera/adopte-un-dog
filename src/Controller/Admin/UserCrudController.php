@@ -9,7 +9,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-
 class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -26,9 +25,8 @@ class UserCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('phone'),
             AssociationField::new('department')
-            ->onlyOnForms() 
-            ->setFormTypeOptions(['by_reference' => false ]) ,
+            ->onlyOnForms()
+            ->setFormTypeOptions(['by_reference' => false]),
         ];
     }
-
 }

@@ -17,7 +17,6 @@ class OfferCrudController extends AbstractCrudController
         return Offer::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -32,9 +31,6 @@ class OfferCrudController extends AbstractCrudController
             AssociationField::new('dogs')
                 ->onlyOnForms()
                 ->setFormTypeOptions(['by_reference' => false]),
-
-
         ];
     }
-
 }

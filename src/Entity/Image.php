@@ -6,8 +6,6 @@ use App\Entity\Traits\HasIdTrait;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[Vich\Uploadable]
@@ -43,6 +41,7 @@ class Image
     public function setDog(?Dog $dog): self
     {
         $this->dog = $dog;
+
         return $this;
     }
 
@@ -52,7 +51,8 @@ class Image
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
-    public function setImageFile(?File $imageFile = null): void
+
+    public function setImageFile(File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
@@ -60,9 +60,9 @@ class Image
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
+
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 }
-

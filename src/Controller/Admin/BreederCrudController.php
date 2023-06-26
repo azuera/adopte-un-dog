@@ -28,7 +28,6 @@ class BreederCrudController extends AbstractCrudController
             AssociationField::new('department')
                 ->onlyOnForms(),
                 BooleanField::new('is_admin'),
-
         ];
     }
 }

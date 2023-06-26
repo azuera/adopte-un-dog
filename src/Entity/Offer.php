@@ -2,11 +2,10 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\HasDescrTrait;
 use App\Entity\Traits\HasCreatedTime;
+use App\Entity\Traits\HasDescrTrait;
 use App\Entity\Traits\HasIdTrait;
 use App\Repository\OfferRepository;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -26,7 +25,7 @@ class Offer
     #[ORM\Column(length: 255)]
     private ?string $location = null;
 
-    #[ORM\Column(options: ["default" => false])]
+    #[ORM\Column(options: ['default' => false])]
     private ?bool $isClosed = false;
 
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Application::class, orphanRemoval: true)]
@@ -41,7 +40,7 @@ class Offer
 
     #[ORM\Column(name: 'updated_time', type: Types::DATETIME_MUTABLE)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeInterface $updatedTime = null;
+    private ?\DateTimeInterface $updatedTime = null;
 
     public function __construct()
     {
@@ -156,6 +155,7 @@ class Offer
 
         return $this;
     }
+
     public function getBreeds(): array
     {
         $breeds = [];
@@ -164,20 +164,22 @@ class Offer
                 $breeds[] = $breed;
             }
         }
+
         return $breeds;
     }
 
-    public function getUpdatedTime(): ?DateTimeInterface
+    public function getUpdatedTime(): ?\DateTimeInterface
     {
         return $this->updatedTime;
     }
 
-    public function setUpdatedTime(DateTimeInterface $updatedTime): self
+    public function setUpdatedTime(\DateTimeInterface $updatedTime): self
     {
         $this->updatedTime = $updatedTime;
 
         return $this;
     }
+
     public function getImages(): array
     {
         $images = [];
@@ -186,6 +188,7 @@ class Offer
                 $images[] = $image;
             }
         }
+
         return $images;
     }
 
@@ -193,10 +196,11 @@ class Offer
     {
         $isDogLof = false;
         foreach ($this->dogs as $dog) {
-            if ($dog->isIsLof() == true) {
+            if (true == $dog->isIsLof()) {
                 $isDogLof = true;
             }
         }
+
         return $isDogLof;
     }
 
@@ -204,18 +208,18 @@ class Offer
     {
         return $this->getTitle();
     }
-    public function getLastMessageDate(): ?DateTimeInterface
+
+    public function getLastMessageDate(): ?\DateTimeInterface
     {
         $date = null;
-        foreach ($this->getApplications() as $application){
-            foreach ($application->getMessages() as $message){
-               if($message->getDateTime() > $date){
-                   $date=$message->getDateTime();
-               }
+        foreach ($this->getApplications() as $application) {
+            foreach ($application->getMessages() as $message) {
+                if ($message->getDateTime() > $date) {
+                    $date = $message->getDateTime();
+                }
             }
         }
+
         return $date;
     }
-
-
 }

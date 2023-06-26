@@ -23,13 +23,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         $description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce luctus neque justo, id vulputate velit malesuada in. Donec vulputate ipsum vitae orci vestibulum, et tempus orci hendrerit.';
         $location = 'Lyon';
 
-        $newDate = new \DateTime() ;
+        $newDate = new \DateTime();
         $breeders = $this->breederRepository->findAll();
-        
-        //Creation of 6 Offers
-        for ( $i = 0; $i < 6; $i++){
-            $dateTime = (clone $newDate)->modify('-' . mt_rand(0, 3) . 'day');
-            $updateTime = (clone $dateTime)->modify('+' . mt_rand(1, 3) . 'day');
+
+        // Creation of 6 Offers
+        for ($i = 0; $i < 6; ++$i) {
+            $dateTime = (clone $newDate)->modify('-'.mt_rand(0, 3).'day');
+            $updateTime = (clone $dateTime)->modify('+'.mt_rand(1, 3).'day');
             // dd($dateTime, $updateTime);
 
             $offer = new Offer();
@@ -39,7 +39,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
 
             $offer->setDateTime($dateTime);
             $offer->setUpdatedTime($updateTime);
-            //adding 1 breeder
+            // adding 1 breeder
             $offer->setBreeder($breeders[mt_rand(0, count($breeders) - 1)]);
             $manager->persist($offer);
         }

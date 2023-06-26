@@ -38,11 +38,12 @@ class BreederRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findForHome():array
+
+    public function findForHome(): array
     {
         return $this->createQueryBuilder('b')
         ->select([
-            'b', 
+            'b',
         ])
             ->leftJoin('b.offers', 'o')
             ->orderBy('o.updatedTime', 'DESC')

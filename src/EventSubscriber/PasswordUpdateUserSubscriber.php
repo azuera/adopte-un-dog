@@ -17,7 +17,6 @@ class PasswordUpdateUserSubscriber implements EventSubscriberInterface
         $this->hasher = $hasher;
     }
 
-
     public static function getSubscribedEvents(): array
     {
         return [
@@ -28,9 +27,10 @@ class PasswordUpdateUserSubscriber implements EventSubscriberInterface
 
     public function updateUserPassword($event): void
     {
+        /** @var User */
         $entity = $event->getEntityInstance();
 
-        if (!$entity instanceof User || empty($entity->getPlainPassword())) {
+        if (!$entity instanceof User || is_null($entity->getPlainPassword())) {
             return;
         }
 

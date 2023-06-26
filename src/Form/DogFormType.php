@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Form;
 
-use App\Entity\Dog;
 use App\Entity\Breed;
-use App\Form\ImageType;
+use App\Entity\Dog;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -53,19 +53,19 @@ class DogFormType extends AbstractType
                 'label' => 'Adopté',
                 'required' => false,
             ])
-            ->add('images', CollectionType::class,[
+            ->add('images', CollectionType::class, [
                 'label' => 'Ajouter une image',
                 'required' => false,
-                'entry_type'=> ImageType::class,
+                'entry_type' => ImageType::class,
                 'entry_options' => ['label' => false],
                 'prototype_name' => '__images__',
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference'  => false,
+                'by_reference' => false,
             ])
         ;
-
     }
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

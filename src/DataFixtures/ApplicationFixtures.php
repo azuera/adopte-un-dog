@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Application;
-use App\Entity\Dog;
 use App\Repository\OfferRepository;
 use App\Repository\UserRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -49,8 +48,8 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
                 }
                 $user = $users[$randomNumber];
             }
-            //Check if offer contains dog
-            if ($offerDogs->first()){
+            // Check if offer contains dog
+            if ($offerDogs->first()) {
                 $application->addDog($offerDogs->first());
             }
             $application->setUser($user);

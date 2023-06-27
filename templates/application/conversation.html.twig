@@ -12,20 +12,16 @@
 
 	<div class="container my-5">
 		{% block subject %}
-			<h2>Votre conversation concernant la candidature :</h2>
+			<H2>votre Conversation concernant la candidature :
+			</H2>
 		{% endblock %}
-		<p>
-			Vous disctuez avec :
-			{{application.user}}</p>
-		<p>
-			Concernant l'offre :
-			{{application.offer.title}}
-		</p>
-		<p>
-			Postée par :
-			{{application.offer.breeder.name }}
-		</p>
 
+		Vous disctuez avec :
+		{{application.user}}<br>
+		Concernant l'offre :
+		{{application.offer.title}}<br>
+		Postée par :
+		{{application.offer.breeder.email }}<br>
 		{% for dog in application.dogs %}
 			<p>
 				Chien concernés :

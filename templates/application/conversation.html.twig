@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Répondre à une annonce
+{% endblock %}
+
+{% block body %}
+
+	<div class="container my-5">
+		<h2 class="mb-3">Répondre à l'annonce :
+			{{application.offer.title}}</h2>
+		{% include "offer/_offer_card.html.twig" with {offer: application.offer}  %}
+	</div>
+
+	<div class="container my-5">
+		{% block subject %}
+			<H2>votre Conversation concernant la candidature :
+			</H2>
+		{% endblock %}
+
+		Vous disctuez avec :
+		{{application.user}}<br>
+		Concernant l'offre :
+		{{application.offer.title}}<br>
+		Postée par :
+		{{application.offer.breeder.email }}<br>
+		{% for dog in application.dogs %}
+			<p>
+				Chien concernés :
+				{{ dog.name }}</p>
+		{% endfor %}
+		<br>
+		<h3>Derniers messages :</h3>
+		<div class="border border-bottom-0 rounded p-3 mb-2 bg-light text-dark ">
+			{% for message in application.messages %}
+				<div class="bg-body-secondary ">
+					<div class="fw-bold border rounded p-2 mb-2 border border-success p-2 " style="--bs-border-opacity: .5;">
+
+						{% if message.isSentByAdopter %}
+							{{ application.user.name }}
+						{% else %}
+							{{ application.offer.breeder.name }}
+						{% endif %}
+					</div>
+					<p>
+						{{ message.text }}</p>
+				</div>
+			{% endfor %}
+		</div>
+
+		{{form_start(form)}}
+		{{form_widget(form)}}
+		<input class="btn btn-primary" type="submit"/>
+		{{form_end(form)}}
+	</div>
+{% endblock %}
+

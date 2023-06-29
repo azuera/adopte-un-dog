@@ -18,10 +18,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class OfferController extends AbstractController
 {
     #[Route('/annonce/{id}', name: 'offer_show', requirements: ['id' => '\d+'])]
-    public function showOffer(OfferRepository $offerRepository, int $id): Response
+    public function showOffer(Offer $offer): Response
     {
-        $offer = $offerRepository->find($id);
-
         return $this->render('offer/offer.html.twig', [
             'offer' => $offer,
         ]);

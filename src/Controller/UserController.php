@@ -21,7 +21,7 @@ class UserController extends AbstractController
         $offers = $offerRepository->findForBreeders($user);
         $applications = $applicationRepository->findUserApplications($user);
 
-        return $this->render('user/index.html.twig', [
+        return $this->render('user/user.html.twig', [
             'controller_name' => 'UserController',
             'user' => $user,
             'offers' => $offers,

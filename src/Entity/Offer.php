@@ -223,15 +223,16 @@ class Offer
 
     public function getLastMessageDate(): ?\DateTimeInterface
     {
-        $date = null;
-        foreach ($this->getApplications() as $application) {
-            foreach ($application->getMessages() as $message) {
-                if ($message->getDateTime() > $date) {
-                    $date = $message->getDateTime();
+        $date = $this->getUpdatedTime();
+        if ( $this->getApplications()->count() > 0 ){
+            foreach ($this->getApplications() as $application) {
+                foreach ($application->getMessages() as $message) {
+                    if ($message->getDateTime() > $date) {
+                        $date = $message->getDateTime();
+                    }
                 }
             }
         }
-
         return $date;
     }
 }

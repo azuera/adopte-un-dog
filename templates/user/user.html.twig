@@ -24,8 +24,8 @@
     </section>
 
     {% if  is_granted('ROLE_BREEDER') %}
-        {% include "user/_offer_table.html.twig" with {offers: offers}  %}
+        {% include "offer/_offer_table.html.twig" with {offers: offers}  %}
     {% endif %}
-        {% include "user/_application_table.html.twig" with {applications: applications}  %}
+        {% include "application/_application_table.html.twig" with {applications: applications}  %}
 </div>
 {% endblock %}

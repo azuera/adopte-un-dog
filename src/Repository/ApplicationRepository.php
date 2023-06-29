@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Application;
+use App\Entity\Offer;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

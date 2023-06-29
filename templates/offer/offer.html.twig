@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    {# Start Container for dogs card #}
     <div class="container">
+        {# Offer details #}
         <h2>{{ offer.title }}</h2>
 
         <div class="row border rounded bg-light p-2 my-2">
@@ -67,5 +67,10 @@
                 {% endfor %}
             </div>
         </div>
+
+        {# If user = offer.user show offer.applications #}
+        {% if app.user == offer.breeder %}
+                {% include "application/_application_table.html.twig" with {applications: offer.applications}  %}
+        {% endif %}
     </div>
 {% endblock %}

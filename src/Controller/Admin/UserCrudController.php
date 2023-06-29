@@ -24,9 +24,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('plainPassword')->onlyOnForms(),
             TextField::new('name'),
             TextField::new('phone'),
-            AssociationField::new('department')
-            ->onlyOnForms()
-            ->setFormTypeOptions(['by_reference' => false]),
+            AssociationField::new('department')->onlyOnForms(),
         ];
     }
 }

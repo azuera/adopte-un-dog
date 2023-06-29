@@ -38,6 +38,9 @@ class Offer
     private ?bool $isClosed = false;
 
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Application::class, orphanRemoval: true)]
+    #[ORM\OrderBy([
+        'dateTime' => 'DESC',
+    ])]
     private Collection $applications;
 
     #[ORM\ManyToOne(inversedBy: 'offers')]

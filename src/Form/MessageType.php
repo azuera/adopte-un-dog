@@ -19,7 +19,7 @@ class MessageType extends AbstractType
                 'label' => 'Votre message',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'veuillez entrer un message',
                     ]),
                     new Length([
                         'min' => 200,
@@ -29,7 +29,7 @@ class MessageType extends AbstractType
                         'maxMessage' => 'Votre message doit faire {{ limit }} caractères maximum',
                     ]),
                 ],
-            ])
+                ])
         ;
     }
 

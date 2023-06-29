@@ -20,6 +20,9 @@ class Application
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'application', targetEntity: Message::class, cascade: ['persist'], orphanRemoval: true)]
+    #[ORM\OrderBy([
+        'dateTime' => 'DESC',
+    ])]
     private Collection $messages;
 
     #[ORM\ManyToOne(inversedBy: 'applications')]

@@ -17,7 +17,7 @@
                 <td>{{ application.user.name }}</td>
                 <td>{{ application.messages|length }}</td>
                 <td class="text-center"><a class="btn btn-primary" href="{{ path('offer_show', {id:application.offer.id}) }}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
-                <td class="text-center"><a class="btn btn-warning" href="{{ path('offer_show', {id:application.offer.id}) }}"><i class="fa-regular fa-comment"></i></a></td>
+                <td class="text-center"><a class="btn btn-warning" href="{{ path('messages', {id:application.id}) }}"><i class="fa-regular fa-comment"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

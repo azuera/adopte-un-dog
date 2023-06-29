@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Application;
+use App\Entity\Breeder;
 use App\Entity\Message;
 use App\Entity\Offer;
+use App\Entity\User;
 use App\Form\ApplicationFormType;
+use App\Form\MessageType;
 use App\Repository\ApplicationRepository;
+use App\Repository\MessageRepository;
 use App\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,8 +26,8 @@ class ApplicationController extends AbstractController
         Request $request,
         OfferRepository $offerRepository,
         Offer $offer,
-        ApplicationRepository $applicationRepository): Response
-    {
+        ApplicationRepository $applicationRepository
+    ): Response {
         $user = $this->getUser();
 
         if ($user == $offer->getBreeder()) {
@@ -33,9 +37,9 @@ class ApplicationController extends AbstractController
         } else {
             $message = (new Message())->setIsSentByAdopter(true);
             $application = (new Application())
-            ->setUser($user)
-            ->setOffer($offer)
-            ->addMessage($message);
+                ->setUser($user)
+                ->setOffer($offer)
+                ->addMessage($message);
 
             $form = $this->createForm(ApplicationFormType::class, $application);
             $form->handleRequest($request);
@@ -52,5 +56,44 @@ class ApplicationController extends AbstractController
                 'form' => $form->createView(),
             ]);
         }
+    }
+
+    #[Route('candidature/{id}/messages', name: 'messages', requirements: ['id' => '\d+'])]
+    #[IsGranted('ROLE_USER')]
+    public function message(
+        Request $request,
+        MessageRepository $messageRepository,
+        Application $application
+    ): Response {
+        /** @var User */
+        $user = $this->getUser();
+
+        if (
+            $user->getId() != $application->getUser()->getId()
+            && $user->getId() != $application->getOffer()->getBreeder()->getId()
+        ) {
+            $this->addFlash('danger', 'Vous n\'avez pas accès à cette discussion');
+
+            return $this->redirectToRoute('offer_show', ['id' => $application->getOffer()->getId()]);
+        }
+
+        $message = new Message();
+        $message->setApplication($application);
+        $message->setIsSentByAdopter(!$this->getUser() instanceof Breeder);
+        $form = $this->createForm(MessageType::class, $message, [
+        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $messageRepository->save($message, true);
+
+            $this->addFlash('success', 'Message envoyé');
+
+            return $this->redirectToRoute('messages', ['id' => $application->getId()]);
+        }
+
+        return $this->render('application/conversation.html.twig', [
+            'form' => $form->createView(),
+            'application' => $application,
+        ]);
     }
 }

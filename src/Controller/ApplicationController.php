@@ -6,6 +6,7 @@ use App\Entity\Application;
 use App\Entity\Breeder;
 use App\Entity\Message;
 use App\Entity\Offer;
+use App\Entity\User;
 use App\Form\ApplicationFormType;
 use App\Form\MessageType;
 use App\Repository\ApplicationRepository;
@@ -57,14 +58,26 @@ class ApplicationController extends AbstractController
         }
     }
 
-    #[Route('application/{id}/reponse', name: 'reponse_message', requirements: ['id' => '\d+'])]
+    #[Route('candidature/{id}/messages', name: 'messages', requirements: ['id' => '\d+'])]
+    #[IsGranted('ROLE_USER')]
     public function message(
         Request $request,
         MessageRepository $messageRepository,
         Application $application
     ): Response {
+        /** @var User */
+        $user = $this->getUser();
+
+        if (
+            $user->getId() != $application->getUser()->getId()
+            && $user->getId() != $application->getOffer()->getBreeder()->getId()
+        ) {
+            $this->addFlash('danger', 'Vous n\'avez pas accès à cette discussion');
+
+            return $this->redirectToRoute('offer_show', ['id' => $application->getOffer()->getId()]);
+        }
+
         $message = new Message();
-        $message->setDateTime(new \DateTime());
         $message->setApplication($application);
         $message->setIsSentByAdopter(!$this->getUser() instanceof Breeder);
         $form = $this->createForm(MessageType::class, $message, [
@@ -75,7 +88,7 @@ class ApplicationController extends AbstractController
 
             $this->addFlash('success', 'Message envoyé');
 
-            return $this->redirectToRoute('reponse_message', ['id' => $application->getId()]);
+            return $this->redirectToRoute('messages', ['id' => $application->getId()]);
         }
 
         return $this->render('application/conversation.html.twig', [

@@ -68,7 +68,7 @@ class OfferRepository extends ServiceEntityRepository
             ->leftJoin('d.breeds', 'b')
             ->leftJoin('d.images', 'i')
             ->andWhere('o.isClosed = false')
-            ->groupBy('o.id')
+            // ->groupBy('o.id')
             ->orderBy('o.updatedTime', 'DESC');
     }
 

@@ -47,7 +47,7 @@ class BreederRepository extends ServiceEntityRepository
         ])
             ->leftJoin('b.offers', 'o')
             ->orderBy('o.updatedTime', 'DESC')
-            ->groupBy('b.id')
+            // ->groupBy('b.id')
             ->getQuery()
             ->getResult()
         ;

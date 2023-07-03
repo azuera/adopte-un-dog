@@ -1,0 +1,25 @@
+import: 
+  - recipe/symfony.php
+
+config:
+  repository: 'git@github.com:azuera/adopte-un-dog.git'
+  ssh_multiplexing: false
+  forward_agent: true
+  writable_mode: 'chmod'
+
+hosts:
+  51.77.158.108:
+    remote_user: debian
+    deploy_path: '~/adopte-un-dog'
+
+tasks:
+  deploy:update:
+    - cd: '{{ release_path }}'
+    - run: composer install && php bin/console doctrine:migrations:migrate -n
+  deploy:
+    - deploy:prepare
+    - deploy:update
+    - deploy:publish 
+
+after:
+  deploy:failed: deploy:unlock
